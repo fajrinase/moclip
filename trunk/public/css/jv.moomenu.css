@@ -1,0 +1,205 @@
+.menusys_moo {	
+}
+#menusys_moo {
+	margin: 0;
+	padding: 0;
+	float: left;
+	overflow: hidden;
+	height: 51;
+}
+#menusys_moo ul {
+	margin: 0; 
+	padding: 0;
+}
+#menusys_moo li {
+	margin: 0; 
+	padding-left: 1px;
+	height: 51px;
+	float: left;
+	display: block;
+	cursor: pointer;	
+	/*background: url(../images/mainmenu_bg.png) no-repeat 0 0;*/
+}
+#menusys_moo li.first-item #menusys1,
+#menusys_moo li.first-itemhover #menusys1  {
+	width: 40px;
+	background: url(../images/icon-home.png) no-repeat 7px 7px;
+	font: 0px;
+	line-height: 0;
+	text-indent: 999px;
+}
+
+#menusys_moo li ul {
+	width: 195px;
+	position: absolute;
+	z-index: 999;
+	left: -999em; 
+	right: auto;
+	height: auto;
+}
+#menusys_moo li ul ul {
+	margin: -2.5em 0 0 13.6em;
+}
+#menusys_moo li li {
+	padding-left: 14px;
+	padding-right: 14px;
+	line-height: 24px;
+	margin: 0;
+	width: 167px;
+}
+#menusys_moo ul a {
+}
+#menusys_moo li:hover ul ul, #menusys_moo li:hover ul ul ul,
+#menusys_moo li.hover ul ul, #menusys_moo li.havechildhover ul ul, #menusys_moo li.havechild-activehover ul ul, #menusys_moo li.activehover ul ul,
+#menusys_moo li.hover ul ul ul, #menusys_moo li.havechildhover ul ul ul, #menusys_moo li.havechild-activehover ul ul ul, #menusys_moo li.activehover ul ul ul {
+	left: -999em;
+	z-index: 99;
+}
+
+#menusys_moo li:hover ul, #menusys_moo li li:hover ul, #menusys_moo li li li:hover ul,
+#menusys_moo li.hover ul, #menusys_moo li.havechildhover ul, #menusys_moo li.havechild-activehover ul, #menusys_moo li.activehover ul,
+#menusys_moo li li.hover ul, #menusys_moo li li.havesubchildhover ul, #menusys_moo li li.havesubchild-activehover ul, #menusys_moo li li.activehover ul,
+#menusys_moo li li li.hover ul, #menusys_moo li li li.havesubchildhover ul, #menusys_moo li li li.havesubchild-activehover ul, #menusys_moo li li li.activehover ul {
+	left: auto;
+	z-index: 99;
+}
+
+/* Menu styling begin */
+
+#menusys_moo li a {
+	display: block;
+	text-decoration: none;
+	
+}
+#menusys_moo li a span {
+	padding: 0 15px ;
+	line-height: 46px;
+	display: block;
+	color: #414141;
+	font-size: 12px;
+	font-family: "Arial";
+	font-weight: bold;
+	text-shadow: 1px 0px 1px #e0e1e2;
+}
+
+
+#menusys_moo li:hover a,
+#menusys_moo li.hover a {
+	
+	
+}
+#menusys_moo li.havechildhover a,
+#menusys_moo li.havechild-activehover a ,
+#menusys_moo li.havechildhover a span,
+#menusys_moo li.havechild-activehover a span{
+	
+	
+}
+
+#menusys_moo li a:hover span,
+#menusys_moo li a:active span,
+#menusys_moo li a:focus span,
+#menusys_moo li:hover a span,
+#menusys_moo li.hover a span{
+	color: #ff0078;
+	display:block;
+	
+	
+}
+#menusys_moo li a:hover,
+#menusys_moo li a:active,
+#menusys_moo li a:focus {
+   
+}
+
+#menusys_moo li a.active,
+#menusys_moo li a.active:hover,
+#menusys_moo li a.active:active,
+#menusys_moo li a.active:focus {
+	
+	
+	
+}
+
+#menusys_moo li a.active span,
+#menusys_moo li a.active:hover span,
+#menusys_moo li a.active:active span,
+#menusys_moo li a.active:focus span {
+	
+}
+
+#menusys_moo li ul {
+	width: 195px;
+	/*padding-bottom: 19px;
+	background: url(../../images/submenu_bg.png) no-repeat -199px bottom;*/
+}
+
+#menusys_moo li ul ul {
+	/*padding-bottom: 19px;
+	background: url(../../images/submenu_bg.png) no-repeat -199px bottom;*/
+}
+
+#menusys_moo li ul li {
+	height: 27px;
+	background: url(../images/submenu_bg.png) repeat-y 0 0px;
+}
+
+#menusys_moo li ul li.first-item,
+#menusys_moo li ul li.first-itemhover {
+	background: url(../images/submenu_bg.png) no-repeat -585px 0;
+}
+#menusys_moo li ul ul li.first-item,
+#menusys_moo li ul ul li.first-itemhover {
+	padding-top: 19px;
+	background: url(../images/submenu_bg.png) no-repeat -390px 0;
+}
+
+#menusys_moo li ul li.last-item,
+#menusys_moo li ul li.last-itemhover {
+	padding-bottom: 19px;
+	background: url(../images/submenu_bg.png) no-repeat -195px bottom;
+}
+
+#menusys_moo li ul a {
+	margin: 0;
+	display: block;
+	width: auto;
+	text-shadow: none;
+}
+
+#menusys_moo li ul a span {
+	padding-left: 25px;
+	line-height: 27px;
+	height: auto;
+	font-size: 12px;
+	font-weight: normal;
+	display: block;
+	color: #ff0078 !important;
+	background: url(../images/sub_arrow.png) no-repeat 12px -26px;
+	text-transform: none;
+	text-shadow: none;
+}
+
+#menusys_moo li ul a:hover,
+#menusys_moo li ul a:active,
+#menusys_moo li ul a:focus {
+	background: url(../images/submenu_hover.png) no-repeat 0 0;
+
+}
+
+#menusys_moo li ul a.active span,
+#menusys_moo li ul a:hover span,
+#menusys_moo li ul a:active span,
+#menusys_moo li ul a:focus span {
+	color: #414141 !important;
+	text-shadow: 0 0 10px #caee9f;
+	/*background: url(../images/submain_bg.png) repeat-x 0 0 ;*/
+}	
+#menusys_moo ul li a.active {
+	background: none;
+}
+
+#menusys_moo ul li a.active:hover,
+#menusys_moo ul li a.active:active,
+#menusys_moo ul li a.active:focus {
+}
