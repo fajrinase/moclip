@@ -1,0 +1,3 @@
+<%
+Session.Timeout = 60
+%>
