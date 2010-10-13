@@ -48,7 +48,7 @@ function show_error(code)
 		conn = null;
 	}
 	catch(e) {}
-	Response.Redirect(config["site_url"] + "/admin/"+_url+"?error=" + code);
+	Response.Redirect(config["site_url"] + "/?error=" + code);
 }
 
 function safe_query(s)

@@ -4,7 +4,8 @@ if(user["id"] > 0)
 {
 	
 %>
-<form name="uploadClip" method="POST" enctype="multipart/form-data" action="">
+<form name="uploadClip" method="POST" enctype="multipart/form-data" action="addclip.asp">
+<input type="hidden" name="uid" value="<%=user["id"]%>" />
 	<table width="100%">
 		<tr>
 			<td width="60%">
@@ -53,6 +54,20 @@ if(user["id"] > 0)
 							<textarea id="desc" name="desription" ></textarea>
 						</td>
 					</tr>
+					
+					<tr>
+						<td>
+							Clip File<span style="color:#FF0000 !important">*</span>
+						</td>
+						<td>
+							<input type="text" name="clipname"  value="" class="file" id="clipFile" readonly />
+						
+							<div class="file_input_div">
+							  <input type="button" value="Search Clip" class="file_input_button" />
+							  <input name="clippath" type="file" class="file_input_hidden" onchange="return selectClip(this)" />
+							</div>
+						</td>
+					</tr>
 										
 					<tr>
 						<td>
@@ -67,26 +82,14 @@ if(user["id"] > 0)
 						</td>
 					</tr>
 					
-					<tr>
-						<td>
-							<label for="getclip">Clip File<span style="color:#FF0000 !important">*</span></label>
-						</td>
-						<td>
-							<input type="text" name="clipname"  value="" class="file" id="clipFile" readonly />
-						
-							<div class="file_input_div">
-							  <input type="button" value="Search Clip" class="file_input_button" />
-							  <input id="getclip" type="file" name="path" class="file_input_hidden" onchange="return selectClip(this)" />
-							</div>
-						</td>
-					</tr>
+					
 					
 					<tr>
 						<td>
 							<label for="private">Private Use?</label>
 						</td>
 						<td>
-							<input id="private" type="checkbox" name="private"  value="" class="" />
+							<input id="private" type="checkbox" name="private"  value="1" class="" />
 						
 						</td>
 					</tr>
@@ -170,17 +173,19 @@ submitShareForm = function() {
 		form.title.focus();
 		return false;
 	}
-	
-	if(formError == 1  || form.imagename) {
+	/*
+	if(formError == 1  || form.imagename.value == "") {
 		alert("Only allow jpg|gif|png, please select other image file!");
 		return false;
 	}
-	else if(formError == 2 || form.clipname) {
+	
+	if(formError == 2 || form.clipname.value == "") {
 		alert("Only allow flv|mp4, please select other clip file!");
 		return false;
 	}
+	*/
 	
-	return false;
+	return true;
 }
 
 </script>

@@ -23,7 +23,9 @@ config["upload_url"]			= config["site_url"] + "/uploads";
 config["upload_path"]			= String(Server.MapPath("uploads")).replace(/admin\\/,"");
 config["image_url"]				= config["site_url"] + "/images";
 config["image_ext"]				= "bmp,gif,jpeg,jpg,jpe,png";
-config["image_size_kb"]		= 500;
+config["clip_ext"]				= "mp4,flv";
+
+config["image_size_kb"]		= 1024;
 config["clip_size_mb"]		= 100;
 
 // Company info

@@ -197,7 +197,10 @@ else if(doexc == "logout") {
 }
 
 else if(doexc == "manager") {
+	if(user["id"])
 	accountManager();
+	else
+	Response.Write("You are not login now! Please login first.");
 }
 
 else if(doexc == "domanager") {
