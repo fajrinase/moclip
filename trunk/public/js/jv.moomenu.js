@@ -124,7 +124,7 @@ var MooMenu = new Class({
 						el.addEvent('mouseout', function()
 						{
 							el.doDeactive();
-							el2.hide(20);
+							el2.hide(200);
 						});
 						new MooMenu(el2);
 						el.hasSub = 1;

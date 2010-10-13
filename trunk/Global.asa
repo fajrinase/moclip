@@ -1,3 +1,20 @@
-<%
-Session.Timeout = 60
-%>
+<SCRIPT RUNAT="Server" LANGUAGE="JavaScript">
+function Application_OnStart()
+{
+	
+}
+function Application_OnEnd()
+{
+	Application.Contents.RemoveAll();
+}
+function Session_OnStart()
+{
+	Session.Contents("islogin") = false;
+	Session.Timeout             = 60;
+}
+function Session_OnEnd()
+{
+	Session.Contents.RemoveAll();
+	Session.Abandon();
+}
+</SCRIPT>
