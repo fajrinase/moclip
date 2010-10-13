@@ -13,7 +13,18 @@ function showTopView()
 
 function showChannel()
 {
-	Response.Write("Hello, i will show you all channels");
+	cid = Request.QueryString("id");
+	if(typeof(cid) != "undifined")
+	{
+		//Build query string
+		
+	}
+	else
+	{
+		//Build query string
+		var query = "select top 20 title, id, image form mc_clips order by rand()"
+		
+	}
 }
 
 var dorequest = Request.QueryString("do");

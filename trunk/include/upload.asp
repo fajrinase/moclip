@@ -1,121 +1,151 @@
 <%
-Function BuildUpload(RequestBin)
-	Response.Buffer = True
-	Response.Clear()
-	'Get the boundary
-	PosBeg      = 1
-	PosEnd      = InstrB(PosBeg, RequestBin, getByteString(chr(13)))
-	boundary    = MidB(RequestBin, PosBeg, PosEnd - PosBeg)
-	boundaryPos = InstrB(1, RequestBin, boundary)
+'***************************************
+' File:	  Upload.asp
+' Author: Jacob "Beezle" Gilley
+' Email:  avis7@airmail.net
+' Date:   12/07/2000
+' Comments: The code for the Upload, CByteString, 
+'			CWideString	subroutines was originally 
+'			written by Philippe Collignon...or so 
+'			he claims. Also, I am not responsible
+'			for any ill effects this script may
+'			cause and provide this script "AS IS".
+'			Enjoy!
+'****************************************
 
-	'Get all data inside the boundaries
-	Do until (boundaryPos = InstrB(RequestBin, boundary & getByteString("--")))
+Class FileUploader
+	Public  Files
+	Private mcolFormElem
 
-	'Members variable of objects are put in a dictionary object
-	Dim UploadControl
-	Set UploadControl = CreateObject("Scripting.Dictionary")
+	Private Sub Class_Initialize()
+		Set Files = Server.CreateObject("Scripting.Dictionary")
+		Set mcolFormElem = Server.CreateObject("Scripting.Dictionary")
+	End Sub
+	
+	Private Sub Class_Terminate()
+		If IsObject(Files) Then
+			Files.RemoveAll()
+			Set Files = Nothing
+		End If
+		If IsObject(mcolFormElem) Then
+			mcolFormElem.RemoveAll()
+			Set mcolFormElem = Nothing
+		End If
+	End Sub
 
-	'Get an object name
-	Pos      = InstrB(BoundaryPos, RequestBin, getByteString("Content-Disposition"))
-	Pos      = InstrB(Pos, RequestBin, getByteString("name="))
-	PosBeg   = Pos + 6
-	PosEnd   = InstrB(PosBeg, RequestBin, getByteString(chr(34)))
-	Name     = getString(MidB(RequestBin, PosBeg, PosEnd - PosBeg))
-	PosFile  = InstrB(BoundaryPos, RequestBin, getByteString("filename="))
-	PosBound = InstrB(PosEnd, RequestBin, boundary)
+	Public Property Get Form(sIndex)
+		Form = ""
+		If mcolFormElem.Exists(LCase(sIndex)) Then Form = mcolFormElem.Item(LCase(sIndex))
+	End Property
 
-	'Test if object is of file type
-	If PosFile <> 0 AND (PosFile < PosBound) Then
-		'Get Filename, content-type and content of file
-		PosBeg   = PosFile + 10
-		PosEnd   = InstrB(PosBeg, RequestBin, getByteString(chr(34)))
-		FileName = getString(MidB(RequestBin, PosBeg, PosEnd - PosBeg))
+	Public Default Sub Upload()
+		Dim biData, sInputName
+		Dim nPosBegin, nPosEnd, nPos, vDataBounds, nDataBoundPos
+		Dim nPosFile, nPosBound
 
-		'Add filename to dictionary object
-		UploadControl.Add "FileName", FileName
-		Pos    = InstrB(PosEnd, RequestBin, getByteString("Content-Type:"))
-		PosBeg = Pos + 14
-		PosEnd = InstrB(PosBeg, RequestBin, getByteString(chr(13)))
+		biData = Request.BinaryRead(Request.TotalBytes)
+		nPosBegin = 1
+		nPosEnd = InstrB(nPosBegin, biData, CByteString(Chr(13)))
+		
+		If (nPosEnd-nPosBegin) <= 0 Then Exit Sub
+		 
+		vDataBounds = MidB(biData, nPosBegin, nPosEnd-nPosBegin)
+		nDataBoundPos = InstrB(1, biData, vDataBounds)
+		
+		Do Until nDataBoundPos = InstrB(biData, vDataBounds & CByteString("--"))
+			
+			nPos = InstrB(nDataBoundPos, biData, CByteString("Content-Disposition"))
+			nPos = InstrB(nPos, biData, CByteString("name="))
+			nPosBegin = nPos + 6
+			nPosEnd = InstrB(nPosBegin, biData, CByteString(Chr(34)))
+			sInputName = CWideString(MidB(biData, nPosBegin, nPosEnd-nPosBegin))
+			nPosFile = InstrB(nDataBoundPos, biData, CByteString("filename="))
+			nPosBound = InstrB(nPosEnd, biData, vDataBounds)
+			
+			If nPosFile <> 0 And  nPosFile < nPosBound Then
+				Dim oUploadFile, sFileName
+				Set oUploadFile = New UploadedFile
+				
+				nPosBegin = nPosFile + 10
+				nPosEnd =  InstrB(nPosBegin, biData, CByteString(Chr(34)))
+				sFileName = CWideString(MidB(biData, nPosBegin, nPosEnd-nPosBegin))
+				oUploadFile.FileName = Right(sFileName, Len(sFileName)-InStrRev(sFileName, "\"))
 
-		'Add content-type to dictionary object
-		ContentType = getString(MidB(RequestBin, PosBeg, PosEnd - PosBeg))
-		UploadControl.Add "ContentType", ContentType
+				nPos = InstrB(nPosEnd, biData, CByteString("Content-Type:"))
+				nPosBegin = nPos + 14
+				nPosEnd = InstrB(nPosBegin, biData, CByteString(Chr(13)))
+				
+				oUploadFile.ContentType = CWideString(MidB(biData, nPosBegin, nPosEnd-nPosBegin))
+				
+				nPosBegin = nPosEnd+4
+				nPosEnd = InstrB(nPosBegin, biData, vDataBounds) - 2
+				oUploadFile.FileData = MidB(biData, nPosBegin, nPosEnd-nPosBegin)
+				
+				If oUploadFile.FileSize > 0 Then Files.Add LCase(sInputName), oUploadFile
+			Else
+				nPos = InstrB(nPos, biData, CByteString(Chr(13)))
+				nPosBegin = nPos + 4
+				nPosEnd = InstrB(nPosBegin, biData, vDataBounds) - 2
+				If Not mcolFormElem.Exists(LCase(sInputName)) Then mcolFormElem.Add LCase(sInputName), CWideString(MidB(biData, nPosBegin, nPosEnd-nPosBegin))
+			End If
 
-		'Get content of object
-		PosBeg = PosEnd + 4
-		PosEnd = InstrB(PosBeg, RequestBin, boundary) - 2
-		Value  = MidB(RequestBin, PosBeg, PosEnd - PosBeg)
-	Else
-		'Get content of object
-		Pos    = InstrB(Pos, RequestBin, getByteString(chr(13)))
-		PosBeg = Pos + 4
-		PosEnd = InstrB(PosBeg, RequestBin, boundary) - 2
-		Value  = getString(MidB(RequestBin, PosBeg, PosEnd - PosBeg))
-	End If
+			nDataBoundPos = InstrB(nDataBoundPos + LenB(vDataBounds), biData, vDataBounds)
+		Loop
+	End Sub
 
-	UploadControl.Add "Value" , Value
-	ClientRequest.Add name, UploadControl
-	BoundaryPos = InstrB(BoundaryPos + LenB(boundary), RequestBin, boundary)
-	Loop
-End Function
+	'String to byte string conversion
+	Private Function CByteString(sString)
+		Dim nIndex
+		For nIndex = 1 to Len(sString)
+		   CByteString = CByteString & ChrB(AscB(Mid(sString,nIndex,1)))
+		Next
+	End Function
 
-Function getByteString(StringStr)
-	For i = 1 to Len(StringStr)
-		char = Mid(StringStr, i, 1)
-		getByteString = getByteString & chrB(AscB(char))
-	Next
-End Function
+	'Byte string to string conversion
+	Private Function CWideString(bsString)
+		Dim nIndex
+		CWideString =""
+		For nIndex = 1 to LenB(bsString)
+		   CWideString = CWideString & Chr(AscB(MidB(bsString,nIndex,1))) 
+		Next
+	End Function
+End Class
 
-Function getString(StringBin)
-	getString = ""
-	For intCount = 1 to LenB(StringBin)
-		getString = getString & chr(AscB(MidB(StringBin, intCount, 1)))
-	Next
-End Function
+Class UploadedFile
+	Public ContentType
+	Public FileName
+	Public FileData
+	
+	Public Property Get FileSize()
+		FileSize = LenB(FileData)
+	End Property
 
-Function ShowError(msg)
-	Conn.Close
-	Set Conn = Nothing
-	Set ClientRequest = Nothing
-	Response.Redirect(Application("site_url") & "/admin/default.asp?error=" & msg)
-End Function
+	Public Sub SaveToDisk(sPath)
+		Dim oFS, oFile
+		Dim nIndex
+	
+		If sPath = "" Or FileName = "" Then Exit Sub
+		If Mid(sPath, Len(sPath)) <> "\" Then sPath = sPath & "\"
+	
+		Set oFS = Server.CreateObject("Scripting.FileSystemObject")
+		If Not oFS.FolderExists(sPath) Then Exit Sub
+		
+		Set oFile = oFS.CreateTextFile(sPath & FileName, True)
+		
+		For nIndex = 1 to LenB(FileData)
+		    oFile.Write Chr(AscB(MidB(FileData,nIndex,1)))
+		Next
 
-Function do_delete(filename)
-	Dim fs
-	Set fs = Server.CreateObject("Scripting.FileSystemObject") 
-	If fs.FileExists(Application("upload_path") & "/" & filename) Then
-		fs.DeleteFile(Application("upload_path") & "/" & filename)
-		UploadError(4)
-	Else
-		UploadError(5)
-	End If
-	Set fs = nothing
-End Function
+		oFile.Close
+	End Sub
+	
+	Public Sub SaveToDatabase(ByRef oField)
+		If LenB(FileData) = 0 Then Exit Sub
+		
+		If IsObject(oField) Then
+			oField.AppendChunk FileData
+		End If
+	End Sub
 
-Function safe_query(s)
-	s = Replace(s, "'", "&#39;") 
-	's = Replace(s, "", "&quote;") 
-	safe_query = s
-End Function
-
-Function SaveFiles
-    Dim Upload, fileName, fileSize, ks, i, fileKey
-
-    Set Upload = New FreeASPUpload
-    Upload.Save(uploadsDirVar)
-
-	' If something fails inside the script, but the exception is handled
-	If Err.Number<>0 then Exit function
-
-    SaveFiles = ""
-    ks = Upload.UploadedFiles.keys
-    if (UBound(ks) <> -1) then
-        SaveFiles = "<B>Files uploaded:</B> "
-        for each fileKey in Upload.UploadedFiles.keys
-            SaveFiles = Upload.UploadedFiles(fileKey).FileName
-        next
-    else
-        'SaveFiles = "The file name specified in the upload form does not correspond to a valid file in the system."
-    end if
-End function
+End Class
 %>
