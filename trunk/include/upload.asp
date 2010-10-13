@@ -139,6 +139,7 @@ Class UploadedFile
 		oFile.Close
 	End Sub
 	
+		
 	Public Sub SaveToDatabase(ByRef oField)
 		If LenB(FileData) = 0 Then Exit Sub
 		

@@ -33,13 +33,13 @@ idx = 0
 For Each File In MyUploader.Files.Items
 	'save to disk
 	File.FileName = CLng(DateDiff("s", "01/01/1970 00:00:00", Now)) &  File.FileName
+	File.SaveToDisk  Application.Contents("upload_path") & "/"
 	if idx = 0 then
 		path = File.FileName
 	else
 		image = File.FileName
+		File.SaveToDisk  Application.Contents("upload_path") & "/"
 	end if
-	
-	'File.SaveToDisk  Application.Contents("upload_path") & "/"
 	idx = idx + 1
 Next
 
