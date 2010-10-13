@@ -148,12 +148,15 @@
 #menusys_moo li ul li.first-itemhover {
 	background: url(../images/submenu_bg.png) no-repeat -585px 0;
 }
+
+/*#menusys_moo li ul li:first-child,*/
 #menusys_moo li ul ul li.first-item,
 #menusys_moo li ul ul li.first-itemhover {
 	padding-top: 19px;
 	background: url(../images/submenu_bg.png) no-repeat -390px 0;
 }
 
+#menusys_moo li ul li:last-child,
 #menusys_moo li ul li.last-item,
 #menusys_moo li ul li.last-itemhover {
 	padding-bottom: 19px;

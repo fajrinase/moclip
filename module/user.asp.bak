@@ -1,0 +1,127 @@
+<%
+
+function login()
+{
+	var username = Request.Form("username");
+	var password = Request.Form("password");
+	
+	if(username == "")
+	{
+		Response.Write("Username can not blank!");
+	}
+	
+	else if(password == "")
+	{
+		Response.Write("Password can not blank!");
+	}
+	
+	else
+	{
+		rs = Server.CreateObject("ADODB.Recordset");
+		rs.Open("SELECT top 1 uid, username, fullname  FROM mc_users where username='"+username+"' and password='"+password+"'", conn);
+		
+				
+		if(! rs.EOF)
+		{
+			rs.MoveFirst;
+			Session.Contents("uid") = intval(new String(rs("uid")));
+			Session.Contents("username") = new String(rs("username")).toString();
+			Session.Contents("fullname") = new String(rs("fullname")).toString();
+			
+			//Redirect
+			Response.Redirect("?");
+		}
+		else
+		{
+			Response.Write("Cannot find your account, please try to login again or click on Forget Pass to get you account again!");
+			
+		}
+		
+		
+		rs.Close();
+		rs = null;	
+	}
+}
+
+function logout()
+{
+	Session.Contents("uid") = 0;
+	Session.Contents("username") = "Guest";
+	Session.Contents("fullname") = "Guest";
+	
+	//Redirect
+	Response.Redirect("?");
+
+}
+
+
+function accountManager(type)
+{
+	if(type == "edit")
+	{
+		rs = Server.CreateObject("ADODB.Recordset");
+		rs.Open("SELECT top 1 *  FROM mc_users where uid='"+user["id"]+"'", conn);
+		
+		if(! rs.EOF)
+		{
+			rs.MoveFirst;	
+			
+			var acc = new Array();		
+			
+			acc["uid"] = intval(new String(rs("uid")));
+			acc["username"] = new String(rs("username")).toString();
+			acc["fullname"] = new String(rs("fullname")).toString();			
+			acc["address"] = new String(rs("address")).toString();
+			acc["address"] = (acc["address"] == "null") ? "" : acc["address"];
+			
+			acc["phone"] = new String(rs("phone")).toString();
+			acc["phone"] = (acc["phone"] == "null") ? "" : acc["phone"];
+			
+			acc["mobile"] = new String(rs("mobile")).toString();
+			acc["mobile"] = (acc["mobile"] == "null") ? "" : acc["mobile"];
+			
+			acc["email"] = new String(rs("email")).toString();
+			
+			acc["sex"] = intval(new String(rs("sex")).toString()) == 1 ? "Male" : "Female";
+			
+			acc["question"] = new String(rs("question")).toString();
+			acc["answer"] = new String(rs("answer")).toString();
+			
+		}
+		else
+		{
+			Response.Write("Cannot find your account, please try to login again or click on Forget Pass to get you account again!");
+		}
+		
+		response.write();
+						
+		rs.Close();
+		rs = null;	
+	}
+		//Show register form
+	%>
+		<!--#include file="register.asp" -->
+	<%
+	
+}
+
+
+var doexc = Request.QueryString("do");
+
+if(doexc == "login") {
+	login();
+}
+
+else if(doexc == "logout") {
+	logout();
+}
+
+else if(doexc == "manager") {
+	accountManager("edit");
+}
+
+else {
+	accountManager("register");
+}
+
+%>

@@ -1,5 +1,3 @@
-<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb">
 <head>
@@ -15,6 +13,7 @@
 <link rel="stylesheet" href="public/css/horizotal.css" type="text/css" />
 <script type="text/javascript" src="public/js/mootools.js"></script>
 <script type="text/javascript" src="public/js/horizotal.js"></script>
+<script type="text/javascript" src="public/js/site.js"></script>
 
 
 <script type="text/javascript" src="public/js/jv.moomenu.js"></script>
@@ -64,19 +63,49 @@
 											<li class="first-item">
 												<a href="#" class=' item' id="menusys60" title="Top View"><span class="menusys_name">Top View</span></a>
 											</li>
-											<li class=" hasChild">
-												<a href="#" class=' item' id="menusys61" title="Top Rate"><span class="menusys_name">Top Rate</span></a>
-											</li>
 											<li class="last-item">
-												<a href="#" class=' item' id="menusys62" title="Top Hits"><span class="menusys_name">Top Hits</span></a>
-											</li>
+												<a href="#" class=' item' id="menusys61" title="Top Rate"><span class="menusys_name">Top Rate</span></a>
+											</li>											
+										</ul>
+									</li>
+									<li class=" hasChild">
+										<a href="#" class=' item' id="menusys2" title="Upload"><span class="menusys_name">Channels</span></a>
+										<ul>
+											<% displayChannelMenu(); %>
 										</ul>
 									</li>
 									<li class="">
-										<a href="#" class=' item' id="menusys2" title="Upload"><span class="menusys_name">Upload Clip</span></a>
+										<a href="?act=upload" class=' item' id="menusys2" title="Upload"><span class="menusys_name">Upload Clip</span></a>
 									</li>
-									<li class=" last-item">
-										<a href="#"	class=' item' id="menusys37" title="Content"><span class="menusys_name">User</span></a>
+									<li class=" last-item hasChild">
+										<a href="#"	class=' item' id="menusys37" title="Content"><span class="menusys_name">My Account</span></a>
+										<ul class='loginpanel'>
+											<%
+												if(user["id"] > 0) {
+													Response.Write("<li><span style='padding-left : 10px;'>"+user["fullname"]+"</span></li>");
+													Response.Write("<li><a class=' item'  href='?act=user&do=manager'><span class='menusys_name'>Manager Account</span></a></li>");
+													Response.Write("<li><a class=' item'  href='?act=user&do=logout'><span class='menusys_name'>Logout</span></a></li>");
+												}
+												else
+												{
+													Response.Write("<li>");
+													Response.Write("<form name='userlogin' action='?act=user&do=login' method='POST'>");
+													Response.Write("<div><input type='text' name='username' value='username' onfocus='toggleContent(this);'/></div>");
+													Response.Write("</li>");
+													Response.Write("<li>");
+													Response.Write("<div><input class='password' type='password' name='password' value='****' onfocus='toggleContent(this);' /></div>");
+													Response.Write("</li>");
+													Response.Write("<li>");
+													Response.Write("<div style='font-size:10px;margin-left: 15px;'><span onclick=\"window.location = '?act=forgetpass';\" alt='Get My Password again' >Forget Pass!</span><input class='submit' type='submit' value='Login'/></div>");
+													Response.Write("</form>");
+													Response.Write("</li>");
+													Response.Write("<li>");
+													Response.Write("<a  class='item' href='?act=register'><span class='menusys_name'>Register Now</span></a>");
+													Response.Write("</li>");
+												}
+												
+											%>
+										</ul>
 									</li>
 								</ul>
 							</div>
@@ -86,7 +115,7 @@
 
 					<div id="jv-logo" class="clearfix">
 						<h1 id="logo">
-							<a class="png" href="#" title="MCLip!"><span>MCLip!</span></a>
+							<a class="png" href="#" title="MoCLip!"><span>MoCLip!</span></a>
 						</h1>
 					</div>
 

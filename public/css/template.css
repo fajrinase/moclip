@@ -234,6 +234,7 @@ strong.icon-home {
 #jv-maincontent-inner {
 	overflow: hidden;
 	padding: 10px;
+	min-height: 435px;
 }
 #jv-container-full #jv-content,
 #jv-container-full #jv-content-inner{
@@ -794,3 +795,122 @@ img.browseProductImage {
 #jv-col3 .jv-snapshot {
 	width: 158px;
 }
+
+/**
+* Custom CSS
+*/
+
+form[name=uploadClip] input[type=text],form[name=uploadClip] input.password {
+	border: solid 1px #CCCCCC;
+	width: 250px;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+form[name=uploadClip] select {
+	border: solid 1px #CCCCCC;
+	width: 250px;
+}
+
+form[name=uploadClip] input.file {
+	width: 170px;
+	height: 16px;
+	margin: 0px;
+	padding: 2px;
+	font: 11px Tahoma, Geneva, sans-serif;
+	color: #b5c532;
+	/*background: #b5c532;*/
+	border: 1px solid #93ad1c;
+	float: left;
+}
+
+form[name=uploadClip] input[type=submit].shareit {
+	background-color: #FF0033;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 5px;
+	color: #fff !important;
+}
+form[name=uploadClip] input[type=reset] {
+	font-size: 13px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+form[name=uploadClip] textarea {
+	border: 1px solid #93ad1c;
+	width: 250px;
+}
+
+
+.file_input_textbox {
+	width: 170px;
+	height: 16px;
+	margin: 0px;
+	padding: 2px;
+	font: 11px Tahoma, Geneva, sans-serif;
+	color: #f1f1e2;
+	background: #b5c532;
+	border: 1px solid #93ad1c;
+	float: left;
+}
+.file_input_div {
+	position: relative;
+	width: 100px;
+	height: 23px;
+	overflow: hidden;
+}
+.file_input_button {
+	width: 72px;
+	height: 22px;
+	padding: 2px;
+	font: 11px/20px Tahoma, Geneva, sans-serif;
+	color: #f1f1e2;
+	text-align: center;
+	background: #b5c532;
+	border: 1px solid #93ad1c;
+	position: absolute;
+	top: 0px;
+	left: 5px;
+	cursor: pointer;
+	outline: none;
+}
+.file_input_hidden {
+	font-size: 45px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	opacity: 0;
+	
+	filter: alpha(opacity=0);
+	-ms-filter: "alpha(opacity=0)";
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+}
+
+form[name=userlogin] input[type=text] {
+	border: 1px solid #93ad1c;
+	width: 140px;
+	padding: 0 auto;
+	margin-left: 15px;
+	
+}
+input.password {
+	border: 1px solid #93ad1c;
+	width: 140px;
+	padding: 0 auto;
+	margin-left: 15px;
+}
+input.submit {
+	border: 1px solid #93ad1c;
+	width: auto;
+	padding: 0 auto;
+	margin-left: 15px;
+	
+}
+
+.loginpanel li {
+		
+}
+
