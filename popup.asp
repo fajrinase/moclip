@@ -4,7 +4,6 @@
 <!--#include file="include/function.asp" -->
 <!--#include file="include/DBinit.asp" -->
 
-<!--#include file="public/header.asp" -->
 <%
 var action = Request.QueryString("act");
 
@@ -59,4 +58,3 @@ else
 }
 
 %>
-<!--#include file="public/footer.asp" -->

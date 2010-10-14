@@ -22,8 +22,8 @@
 <link rel="stylesheet" href="public/css/template.css" type="text/css" />
 
 <!--[if lte IE 6]>
-	<link rel="stylesheet" href="http://template15.joomlavision.com/jv_inci/templates/jv_inci/css/ie6.css" type="text/css" />
-	<script type="text/javascript" src="http://template15.joomlavision.com/jv_inci/templates/jv_inci/js/ie_png.js"></script>
+	<link rel="stylesheet" href="public/css/ie6.css" type="text/css" />
+	<script type="text/javascript" src="public/js/ie_png.js"></script>
 	<script type="text/javascript">
 	window.addEvent ('load', function() {
 	   ie_png.fix('.png');
@@ -31,7 +31,7 @@
 	</script>
 	<![endif]-->
 <!--[if lte IE 7]>
-	<link rel="stylesheet" href="http://template15.joomlavision.com/jv_inci/templates/jv_inci/css/ie7.css" type="text/css" />
+	<link rel="stylesheet" href="public/css/ie7.css" type="text/css" />
 	<![endif]-->
 </head>
 <body id="bd" class="fs3 ltr">
@@ -44,7 +44,7 @@
 					<div id="jv-top">
 						<ul class="menu">
 							<li class="item28 first">
-								<a href="#"><span>About</span></a>
+								<a href="default.asp"><span>Home</span></a>
 							</li>
 						</ul>
 					</div>
@@ -61,10 +61,10 @@
 										<a href="#" class=' item' id="menusys27" title="Video"><span class="menusys_name">Videos</span></a>
 										<ul>
 											<li class="first-item">
-												<a href="#" class=' item' id="menusys60" title="Top View"><span class="menusys_name">Top View</span></a>
+												<a href="default.asp?act=channel&do=tophit" class=' item' id="menusys60" title="Top View"><span class="menusys_name">Top View</span></a>
 											</li>
 											<li class="last-item">
-												<a href="#" class=' item' id="menusys61" title="Top Rate"><span class="menusys_name">Top Rate</span></a>
+												<a href="default.asp?act=channel&do=toprate" class=' item' id="menusys61" title="Top Rate"><span class="menusys_name">Top Rate</span></a>
 											</li>											
 										</ul>
 									</li>
@@ -209,16 +209,16 @@
 											<div class="jv-inside clearfix">
 												<ul class="menu">
 													<li class="item53 first">
-														<a href="#"><span>Just Added</span></a>
+														<a href="default.asp?act=channel&do=justadd"><span>Just Added</span></a>
 													</li>
 													<li class="item54">
-														<a href="#"><span>Top Hits</span></a>
+														<a href="default.asp?act=channel&do=tophit"><span>Top Hits</span></a>
 													</li>
 													<li class="item55">
-														<a href="#"><span>Top Rate</span></a>
+														<a href="default.asp?act=channel&do=toprate"><span>Top Rate</span></a>
 													</li>
 													<li class="item56">
-														<a href="#"><span>Browse</span></a>
+														<a href="default.asp?act=channel&do=all"><span>Browse</span></a>
 													</li>
 													<li id="current" class="active item59">
 														<a href="#"><span>Search</span></a>
