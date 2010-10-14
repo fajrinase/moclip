@@ -448,9 +448,9 @@ span.jv-span-name {
 	background:url(../images/handles_bg.png) no-repeat 0 bottom;
 }
 #jv-left div.box {
-	margin-right: -10px;
+	margin-right: -15px;
 	padding: 0 10px 0 84px;
-	width: 180px;
+	/*width: 180px;*/
 	height: 515px;
 	float: right;
 	background: url(../images/right_bg.png) no-repeat 0 50px;
@@ -914,3 +914,228 @@ input.submit {
 		
 }
 
+.clip-row, .clip-row-first {
+	float : left;
+	position: relative;
+}
+
+.clip-row, .clip-row-first a.clip-view {
+	border: none;
+	background-color: none;
+	/*padding : 0;*/
+	margin: 0;
+}
+
+.clip-row-first {
+	width: 674px;
+	height: 366px;
+	overflow: hidden;
+}
+
+.clip-row-first a.clip-view {
+	
+}
+
+.clip-row-first a.clip-view div.clip-title{
+	font-size: 19px;
+	font-weight:700;
+	text-align: left;
+	position: absolute;
+	display: block;
+	width: 100%;
+	bottom: 1px;
+	background: transparent url(../images/75percent_black.png.v524ce0241013d9af.png) repeat;
+	padding: 0 1px;
+	height: 100px;
+	padding: 0;
+	margin: 0 auto;
+}
+.clip-row-first a.clip-view div.clip-title span {
+	color: #FFCC33;
+	padding-left : 20px;
+	
+}
+.clip-row-first a.clip-view div.clip-title div.clip-desc {
+	color: #fff;
+	font-weight: normal;
+	text-align: justify;
+	padding : 5px 25px 0 20px;
+	height: 40px;
+	overflow-y : auto;
+	
+}
+.clip-column {
+	clear : left;
+	padding-top : 10px;
+}
+
+.clip-image {
+	border: 1px solid #9ECCE2;
+	padding : 1px
+}
+.clip-image img {
+	border : none;
+}
+div.clip-title {	
+	text-align: center;
+	border-top : none;
+	font-weight:700;
+	position: absolute;
+	display: block;
+	width: 150px;
+	bottom: 1px;
+	background: transparent url(../images/75percent_black.png.v524ce0241013d9af.png) repeat;
+	padding: 0 1px;
+}
+.clip-title span {
+	color: #FFFFFF
+}
+
+a.clip-view:hover {
+	color: #FF0000 !important;
+	/*background: transparent url(../images/play.png) center center no-repeat;*/
+}
+
+.view-clip-title {
+	font-size: 19px;
+	font-weight:800;
+	margin-bottom: 15px;
+	color: #FF0066;
+	font-family:"Courier New", Courier, monospace;
+	border-bottom: solid 4px #E8E8E8;	
+}
+
+.clip-view-submiter {
+	background-color: ;
+	-moz-border-radius : 5px;
+	webkit-radius : 5px;
+	border-radius : 5px;
+	background: #F2F2F2 url(../images/play.png) 5px center no-repeat;
+	height: 70px;
+	padding-left : 80px;
+}
+
+.clip-view-same > div{
+    border-bottom : 4px solid #E8E8E8;
+    font-size: 16px;
+    font-weight: bold;
+	color:#FF3300;
+	margin-top : 10px;
+}
+
+.list-same-clips {
+	border-left : 4px solid #E8E8E8;
+}
+
+li.view-clip-more-row {
+	padding-left: 5px;
+	
+}
+.view-clip-more-row a.clip-view {
+	display:table;
+	padding: 3px 0 0 0;
+}
+
+.view-clip-more-row a.clip-view:hover {
+    background-color: #DDD;
+}
+
+
+.view-clip-more-row a.clip-view div {
+	float: left;
+	line-height: 15px;
+	font-size: 11px !important;
+}
+
+.view-clip-more-row a.clip-view div:last-child{
+	clear : left;
+	line-height: 0px;
+	height: 0px;
+}
+
+.row-clip-title {
+	margin-left : 3px;
+	color: #0066CC !important;
+	font-weight:800;
+}
+.row-clip-desc {
+	height: 15px;
+	margin-left : 3px;
+	width: 150px;
+	color: #999999 !important;
+	overflow: hidden;
+}
+
+.clip-view-extra-info {
+	background-color: #FFE6E6;
+	
+}
+
+li.view-clip-more-row a.clip-view div.row-clip-image img{
+	background: none;
+	border : 1px solid #d2d2d2;
+	padding: 1px;
+}
+
+.clip-view-hits {
+    padding-left : 5px;
+    font-size : 11px;
+    color : #ddddd !important;
+}
+.clip-view-rate {
+    float : right;   
+}
+#clip-start-rate {
+    vertical-align: middle;    
+}
+
+/*
+ * comment
+ */
+
+.clip-list-comments-title {
+    margin-top: 5px;
+    background-color: #DDD;
+    padding-left:5px;
+} 
+
+.list-clip-comments {
+    max-height : 320px;
+    overflow-y: auto;
+    font-size: 11px;
+    border : 1px solid #ddd;
+    border-top: none;
+}
+
+li.view-clip-comment-row {
+    padding : 0 5px 10px 5px;
+}
+
+li.view-clip-comment-row div:first-child {
+    width: auto;
+    margin-left : 10px;
+    margin-bottom : -10px;
+}
+li.view-clip-comment-row div:first-child span {
+    background-color: #fff;
+    padding : 5px;
+}
+
+li.view-clip-comment-row div:last-child {
+    border: 1px solid #FCABAB;
+    padding : 5px;
+}
+
+div.post-comment {
+    margin: 0 auto;
+    margin-top: 5px;    
+    padding: 10px 0;
+}
+div.post-comment > div {
+    margin: 0 auto;
+    width: 350px;
+}
+div.post-comment input[type=text],textarea {
+    border: solid 1px #d2d2d2;
+    width: 380px;
+}

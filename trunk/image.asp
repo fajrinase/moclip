@@ -23,17 +23,21 @@ File = Path & "\" & iFilename
 With ctrl
 	.enablelzw= True
 	.LoadBitmap File
+'	.ChangeColorDepth 256
 	.SaveformatName = "jpeg"
+	.SaveJPEGProgressive = True 'Progressive
+    .SaveJPEGQuality = 70 'Quality of 70%
 	newWidth = nWidth 'Get the height according to the width (keep the ratio)
-    newHeight = (newWidth * .Height) / .Width
+    newHeight = nWidth / 1.85'(newWidth * .Height) / (.Width) 
     
     .Resize newWidth, newHeight 'Resize the pciture
+	'.ResizeCanvas newWidth, newHeight, RGB(0,0,0)
 
-	.FontName = "arial"
-	.FontSize = 13
-	'.TextOut "GflAx 200 - Exemple 1", 5, 5, RGB(255, 255, 255) 'Write library version on the picture
+	'.FontName = "arial"
+	'.FontSize = 13
+	'.TextOut "MoClip!", 5, 5, RGB(255, 255, 255) 'Write library version on the picture
 
-	response.contenttype = "image/png"
+	response.contenttype = "image/jpeg"
 	response.binarywrite .SendBinary
 end with
 

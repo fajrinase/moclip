@@ -39,7 +39,7 @@ config["aboutus"]			= "";
 
 //User setting
 
-if( typeof(Session("uid")) == "undifined") {
+if( typeof(Session("uid")) == "undifined" && !Session("uid")) {
 	Session("uid") = 0;
 	Session("username") = "Guest";
 	Session("fullname") = "Guest";
