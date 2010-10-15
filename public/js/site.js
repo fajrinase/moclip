@@ -154,3 +154,12 @@ postaComment = function()
 	mypopuppopuot("popup.asp?act=clip&do=comment&cid="+cid.value+"&content="+content.value+"&title="+title.value, "mywindow_"+cid.value);
 	
 }
+
+reportThisClip = function(cid)
+{
+	var cfm = window.confirm("Are you sure report this clip as broken?");
+	if(cfm)
+	{
+		mypopuppopuot("popup.asp?act=clip&do=report&cid="+cid, "mywindow_"+cid);
+	}	
+}

@@ -52,7 +52,19 @@ else if(action == "search")
 <%
 }
 
+else if(action == "suggestion") 
+{
+%>
+<!--#include file="module/suggestion.asp" -->
+<%
+}
 
+else if(action == "contact") 
+{
+%>
+<!--#include file="module/contact.asp" -->
+<%
+}
 
 else
 {

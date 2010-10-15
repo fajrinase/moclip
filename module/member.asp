@@ -29,7 +29,8 @@ function login()
 			Session.Contents("fullname") = new String(rs("fullname")).toString();
 			
 			//Redirect
-			Response.Redirect("?");
+			//Response.Redirect("?");
+			redirect(11, "default.asp" );
 		}
 		else
 		{
