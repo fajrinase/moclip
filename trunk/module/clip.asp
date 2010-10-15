@@ -57,7 +57,7 @@ function viewClip()
 					</div>
 					
 					<div class="clip-view-extra-info">
-						<span class="clip-view-report">Report</span>
+						<span class="clip-view-report" onclick="reportThisClip(<%=id%>)">Report</span>
 						<span class="clip-view-hits"><b><%=hits%></b> views</span>
 						<%showClipRate(rate, rate_total, id, 1)%>
 						<span style="clear:both"></span>
@@ -176,22 +176,28 @@ function showClipComments(id)
 	subrs.Close();
 	subrs = null;
 	
-	%>
-		<div class="post-comment">
-			<input type="hidden" value="<%=id%>" id="comment-cid">
-			<div><input type="text" name="Title" value="Title" onfocus='toggleContent(this);' id="comment-title"></div>
-			<div><textarea name="comment" id="comment-content"></textarea></div>
-			<div><input type="button" value="Comment" onclick="postaComment()"></div>
-		</div>
-	<%	
-
+	if(user["id"] > 0)
+	{
+		%>
+			<div class="post-comment">
+				<input type="hidden" value="<%=id%>" id="comment-cid">
+				<div><input type="text" name="Title" value="Title" onfocus='toggleContent(this);' id="comment-title"></div>
+				<div><textarea name="comment" id="comment-content"></textarea></div>
+				<div><input type="button" value="Comment" onclick="postaComment()"></div>
+			</div>
+		<%	
+	}
+	else
+	{
+		Response.Write("<div class='post-comment'>Please login to comment on this clip!</div>");	
+	}
 }
 
 function rateClip()
 {
 	if(!user["id"])
 	{
-		Response.Write("<script>alert('You are not login')</script>");
+		Response.Write("<script>alert('You are not login'); window.close()</script>");
 	}
 	else
 	{
@@ -201,7 +207,7 @@ function rateClip()
 		var query = "insert into mc_clip_rate (clip_id, rate, user_id) values("+id+","+p+","+user["id"]+")";
 		
 		conn.Execute(query);
-		Response.Write("<script>alert('Your rate was susscessfull added')</script>");
+		Response.Write("<script>alert('Your rate was susscessfull added'); window.close()</script>");
 	}
 }
 
@@ -209,7 +215,7 @@ function commentClip()
 {
 	if(!user["id"])
 	{
-		Response.Write("<script>alert('You are not login')</script>");
+		Response.Write("<script>alert('You are not login'); window.close()</script>");
 	}
 	else
 	{
@@ -220,13 +226,24 @@ function commentClip()
 		var query = "insert into mc_comments (clip_id, user_id, title, comment) values("+id+","+user["id"]+", '"+title+"', '"+content+"')";
 		
 		conn.Execute(query);
-		Response.Write("<script>alert('Your comment was susscessfull added')</script>");		
+		Response.Write("<script>alert('Your comment was susscessfull added'); window.close()</script>");		
 	}	
 }
 
 function reportClip()
 {
 	var id = intval(Request.QueryString("cid"));
+	if(!user["id"])
+	{
+		Response.Write("<script>alert('You are not login'); window.close()</script>");
+	}
+	else
+	{
+		var query = "insert into mc_report (clip_id, user_id, comment) values("+id+","+user["id"]+", 'Please check this clip!')";
+		conn.Execute(query);
+		Response.Write("<script>alert('This clip was reported as broken'); window.close()</script>");
+	}
+	
 	
 }
 
