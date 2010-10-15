@@ -212,4 +212,40 @@ function displayChannelMenu()
 	rs = null;	
 }
 
+function getRandom5Clip()
+{
+	rs = Server.CreateObject("ADODB.Recordset");
+
+	rs.Open("SELECT top 5 title, id, description, date_added, image  FROM mc_clips ORDER BY NEWID()", conn);
+		
+	Response.Write("<ul class='list-clips slide-clip-row'>");
+	
+	while(!rs.EOF)
+	{
+		var image = trim(new String(rs("image")).toString());
+		var title = trim(new String(rs("title")).toString());
+		var desc = trim(new String(rs("description")).toString());
+		var id = intval(new String(rs("id")));
+		
+		
+		%>
+			<li class="clip-row clip-slide-shadow">
+				<a class="clip-view" href="default.asp?act=clip&do=view&id=<%=id%>" alt="">
+					<div class='clip-image'><img src="image.asp?f=<%=image%>&w=165&h=250" alt="<%=title%>"/></div>
+					<div class='clip-title clip-slide-title'><span><%=title%></span></div>
+				</a>					
+			</li>
+			
+		<%
+		
+		rs.MoveNext;
+	}
+	
+	Response.Write("<li class='clip-column'></li>");
+	Response.Write("</ul>");
+	
+	rs.Close();
+	rs = null;
+}
+
 %>

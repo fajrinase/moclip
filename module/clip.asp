@@ -41,7 +41,7 @@ function viewClip()
 							<param name="movie" value="public/flash/player.swf" />
 							<param name="allowfullscreen" value="true" />
 							<param name="allowscriptaccess" value="always" />							
-							<param name="flashvars" value="file=<%=path%>&image=<%=image%>" />
+							<param name="flashvars" value="file=<%=path%>&image=<%=image%>&skin=public/flash/icecreamsneaka.zip" />
 							<embed
 								type="application/x-shockwave-flash"
 								id="player2"
@@ -51,12 +51,13 @@ function viewClip()
 								height="345"
 								allowscriptaccess="always" 
 								allowfullscreen="true"
-								flashvars="file=<%=path%>&image=<%=image%>" 
+								flashvars="file=<%=path%>&image=<%=image%>&skin=public/flash/icecreamsneaka.zip" 
 							/>
 						</object>
 					</div>
 					
 					<div class="clip-view-extra-info">
+						<span class="clip-view-report">Report</span>
 						<span class="clip-view-hits"><b><%=hits%></b> views</span>
 						<%showClipRate(rate, rate_total, id, 1)%>
 						<span style="clear:both"></span>
@@ -213,8 +214,8 @@ function commentClip()
 	else
 	{
 		var id = intval(Request.QueryString("cid"));
-		var title = Request.QueryString("title");
-		var content = Request.QueryString("content");
+		var title = safe_query(Request.QueryString("title"));
+		var content = safe_query(Request.QueryString("content"));
 		
 		var query = "insert into mc_comments (clip_id, user_id, title, comment) values("+id+","+user["id"]+", '"+title+"', '"+content+"')";
 		

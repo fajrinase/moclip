@@ -144,29 +144,29 @@
 										this.handles.removeClass('active');
 										currentHandle.addClass('active');
 									},
-									autoPlay : 0
+									autoPlay : 1
 								});
 								slid.play;
 							});
 						</script>
 
-						<div class="mod_jvsello2_headline" style="height: 175px; width: 980px">
+						<div class="mod_jvsello2_headline" style="height: 117px; width: 980px">
 
-						<div class="jvcarousel_frame" style="height: 175px; width: 980px">
+						<div class="jvcarousel_frame" style="height: 117px; width: 980px">
 							<div class="jvcarousel" id="jvcarousel46">
 								<div class='jvcarousel-slide' style='width: 980px'>
 									<div class="jvcarousel-item" style="width: 953px">
-										<!--<img alt="slideshow 2" src="/jv_inci/images/stories/thumbs/com_content/47/thumbs_980x365.png" border="0" />-->
+										<%=getRandom5Clip()%>
 									</div>
 								</div>
 								<div class='jvcarousel-slide' style='width: 980px'>
 									<div class="jvcarousel-item" style="width: 953px">
-										<!--<img alt="slideshow 3" src="/jv_inci/images/stories/thumbs/com_content/48/thumbs_980x365.png" border="0" />-->
+										<%=getRandom5Clip()%>
 									</div>
 								</div>
 								<div class='jvcarousel-slide' style='width: 980px'>
 									<div class="jvcarousel-item" style="width: 953px">
-										<!--<img alt="slideshow1" src="/jv_inci/images/stories/thumbs/com_content/46/thumbs_980x365.png" border="0" />-->
+										<%=getRandom5Clip()%>
 									</div>
 								</div>
 							</div>
@@ -209,7 +209,7 @@
 											<div class="jv-inside clearfix">
 												<ul class="menu">
 													<li class="item53 first">
-														<a href="default.asp?act=channel&do=justadd"><span>Just Added</span></a>
+														<a href="default.asp"><span>Home</span></a>
 													</li>
 													<li class="item54">
 														<a href="default.asp?act=channel&do=tophit"><span>Top Hits</span></a>
@@ -221,13 +221,13 @@
 														<a href="default.asp?act=channel&do=all"><span>Browse</span></a>
 													</li>
 													<li id="current" class="active item59">
-														<a href="#"><span>Search</span></a>
+														<a href="default.asp?act=search"><span>Search</span></a>
 													</li>
 													<li class="item58">
-														<a href="#"><span>Terms</span></a>
+														<a href="default.asp?act=suggestion"><span>Suggestion</span></a>
 													</li>
 													<li class="item57 last">
-														<a href="#"><span>About Us</span></a>
+														<a href="default.asp?act=contact"><span>Contact Us</span></a>
 													</li>
 												</ul>
 											</div>
@@ -248,7 +248,7 @@
 							<div id="jv-breadcrumbs">
 								<strong class="icon-home">You are here:</strong> 
 								<span class="breadcrumbs pathway"> 
-									<a href="#" class="pathway">Home</a>
+									<a href="default.asp" class="pathway">Home</a>
 								</span>
 							</div>
 

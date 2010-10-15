@@ -24,7 +24,7 @@
 					<div class="jv-wrapper">
 						<div id="jv-copyright">
 							<div id="jv-copyright-inner">
-								Copyright &copy; 2010 All rights reserved.
+								Copyright &copy;<b>MoClip!</b> 2010 All rights reserved.
 							</div>
 						</div>
 
@@ -32,16 +32,16 @@
 							<div id="jv-footer-inner">
 								<ul class="menu">
 									<li class="item28 first">
-										<a href="#"><span>About Us!</span></a>
+										<a href="default.asp?act=contact"><span>Contact Us!</span></a>
 									</li>
 									<li class="item29">
-										<a href="#"><span>Features</span></a>
+										<a href="default.asp?act=channel&do=all"><span>Channel</span></a>
 									</li>
 									<li class="item18">
-										<a href="#"><span>News</span></a>
+										<a href="default.asp?act=suggestion"><span>Suggestion</span></a>
 									</li>
 									<li class="item30 last">
-										<a href="#"><span>The Community</span></a>
+										<a href="default.asp?act=upload"><span>Upload</span></a>
 									</li>
 								</ul>
 							</div>

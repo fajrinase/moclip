@@ -28,8 +28,15 @@ toggleContent = function(obj) {
 	obj.value = "";
 
 	obj.onblur = function() {
+		
 		if (this.value == "") {
-			this.value = this.name;
+			if(obj.defaultValue != "")
+			{
+				this.value = this.defaultValue;
+			}
+			else {
+				this.value = this.name;	
+			}			
 		}
 	}
 
@@ -78,13 +85,14 @@ loadRatingModule = function(option)
 			}
 			
 			this.el.appendChild(img);
-			if(option.allowRate)
+			if(option.allowRate == 1)
 			{
 				$(img.id).addEvent('mousedown', this.setRating.bind(this, i));
 				$(img.id).addEvent("mouseout", this.initComponent.bind(this, 500));
 				$(img.id).addEvent('mouseover', this.fillRate.bind(this, {idx : i, runtime : 50}));
 			}
-			else 
+			
+			if(option.allowRate == 0)
 			{
 				$(img.id).addEvent('mousedown', function() {
 					alert("Please login before do it!");
