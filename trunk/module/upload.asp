@@ -173,7 +173,7 @@ submitShareForm = function() {
 		form.title.focus();
 		return false;
 	}
-	/*
+	
 	if(formError == 1  || form.imagename.value == "") {
 		alert("Only allow jpg|gif|png, please select other image file!");
 		return false;
@@ -183,7 +183,7 @@ submitShareForm = function() {
 		alert("Only allow flv|mp4, please select other clip file!");
 		return false;
 	}
-	*/
+	
 	
 	return true;
 }

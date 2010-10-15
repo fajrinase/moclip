@@ -320,6 +320,8 @@ strong.icon-home {
 }
 #jv-copyright-inner {
 	font-size: 11px;
+	line-height: -12px;
+	vertical-align: middle;
 }
 /* END FOOTER 
 ----------------------------------------------*/
@@ -973,6 +975,11 @@ input.submit {
 	border: 1px solid #9ECCE2;
 	padding : 1px
 }
+.clip-image:hover {
+	opacity : .6;
+	background: transparent url(../images/play.png) center no-repeat;
+	filter:alpha(opacity=40); /* IE patch */
+}
 .clip-image img {
 	border : none;
 }
@@ -992,8 +999,7 @@ div.clip-title {
 }
 
 a.clip-view:hover {
-	color: #FF0000 !important;
-	/*background: transparent url(../images/play.png) center center no-repeat;*/
+		color: #FF0000 !important;
 }
 
 .view-clip-title {
@@ -1031,6 +1037,19 @@ li.view-clip-more-row {
 	padding-left: 5px;
 	
 }
+
+.clip-view-report {
+	background: #FACBCB url(../images/report.gif) 4px center no-repeat;
+	padding: 4px 5px 3px 22px;
+	vertical-align: middle;
+	font-size: 11px;
+	line-height: 16px;
+	cursor: pointer;
+	color: #CC0000;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
 .view-clip-more-row a.clip-view {
 	display:table;
 	padding: 3px 0 0 0;
@@ -1138,4 +1157,64 @@ div.post-comment > div {
 div.post-comment input[type=text],textarea {
     border: solid 1px #d2d2d2;
     width: 380px;
+}
+
+/*
+*	Header 
+*/
+.slide-clip-row {
+	margin-top : 5px;
+}
+.clip-slide-shadow{
+	padding: 0;
+	margin: 0 10px;
+	box-shadow: -5px 5px 10px #000;
+	-webkit-box-shadow: -5px 5px 10px #000;
+	-moz-box-shadow: -5px 5px 10px #000000;
+}
+.clip-slide-title {
+	width: 166px !important;
+}
+/*
+	Default page
+*/
+.list-chanel {
+
+}
+.column-channel-news {
+	float: left;
+	padding: 0;
+	margin: 5px 28px;
+	width: 184px;
+}
+
+.column-channel-news-image img{
+
+	border: 1px solid #999999;
+	padding: 1px;
+}
+
+.column-channel-news-image a:hover  {
+	background: transparent url(../images/play.png) center center no-repeat;
+	z-index: 2;
+	display: block;
+	opacity : 1;
+	filter:alpha(opacity=100); /* IE patch */
+}
+
+.column-channel-news-image a:hover img  {
+	z-index: 0;
+	opacity : .6;
+	filter:alpha(opacity=60); /* IE patch */
+}
+
+.column-channel-news div:first-child a{
+	color: #993366 !important;
+	font-size: 14px;
+	font-weight: 800;
+}
+.column-channel-news div:last-child {
+	color: #666666 !important;
+	font-size: 11px;
+	font-weight: 800;
 }
