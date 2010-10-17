@@ -4,24 +4,30 @@
 			<td width="60%">
 				<table width="100%">
 					<caption style="text-align:left; font-size: 20px; font-weight: bold;"><%
-						if(typeof(acc["uid"]) != "undefined")
-						{
-							var submittext = "Update Profile!";
-							Response.Write("Manage My Profile");
-						}
-						else
-						{
+						if(trim(error_text) != "") {
+							Response.Write("<font color='red'>"+error_text+"</font>");
 							var submittext = "Register";
-							Response.Write("Register New Account");
 						}
-					%></caption>
+						else  {
+							if(isset(acc["uid"]) && acc["uid"] > 0)
+							{
+								var submittext = "Update Profile!";
+								Response.Write("Manage My Profile");
+							}
+							else
+							{
+								var submittext = "Register";
+								Response.Write("Register New Account");
+							}
+						}
+						%></caption>
 					
 					<tr>
 						<td>
 							<label for="fullname">Full Name<span style="color:#FF0000 !important">*</span></label>
 						</td>
 						<td>
-							<input id="fullname" type="text"  name="fullname" value="<%=acc["fullname"]%>" />
+							<input id="fullname" type="text"  name="fullname" value="<%=trim(acc["fullname"])%>" />
 						</td>
 					</tr>
 									
@@ -29,7 +35,7 @@
 					<%
 					if(typeof(acc["uid"]) == "undefined")
 						{
-							Response.Write("<tr><td><label for='Username'>Username<span style='color:#FF0000 !important'>*</span></label></td><td><input id='Username' type='text'  name='username' value='' /></td></tr>");
+							Response.Write("<tr><td><label for='Username'>Username<span style='color:#FF0000 !important'>*</span></label></td><td><input id='Username' type='text'  name='username' value='"+trim(acc["address"])+"' /></td></tr>");
 							
 							
 							Response.Write("<tr><td><label for='password'>Password<span style='color:#FF0000 !important'>*</span></label></td>");
@@ -45,7 +51,7 @@
 							<label for="email">Email<span style="color:#FF0000 !important">*</span></label>
 						</td>
 						<td>
-							<input id="email" type="text"  name="email" value="<%=acc["email"]%>" />
+							<input id="email" type="text"  name="email" value="<%=trim(acc["email"])%>" />
 						</td>
 					</tr>
 					
@@ -54,7 +60,7 @@
 							<label for="Address">Address</label>
 						</td>
 						<td>
-							<input id="Address" type="text"  name="address" value="<%=acc["address"]%>" />
+							<input id="Address" type="text"  name="address" value="<%=trim(acc["address"])%>" />
 						</td>
 					</tr>
 					
@@ -63,7 +69,7 @@
 							<label for="phone">Telephone</label>
 						</td>
 						<td>
-							<input id="phone" type="text"  name="phone" value="<%=acc["phone"]%>" />
+							<input id="phone" type="text"  name="phone" value="<%=trim(acc["phone"])%>" />
 						</td>
 					</tr>
 					
@@ -73,7 +79,7 @@
 							<label for="mobile">Mobile</label>
 						</td>
 						<td>
-							<input id="mobile" type="text"  name="mobile" value="<%=acc["mobile"]%>" />
+							<input id="mobile" type="text"  name="mobile" value="<%=trim(acc["mobile"])%>" />
 						</td>
 					</tr>
 					

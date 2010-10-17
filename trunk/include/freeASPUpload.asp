@@ -9,7 +9,7 @@
 'Jan 6, 2009: Lars added ASP_CHUNK_SIZE
 'Sep 3, 2010: Enforce UTF-8 everywhere; new function to convert byte array to unicode string
 
-const DEFAULT_ASP_CHUNK_SIZE = 200000
+const DEFAULT_ASP_CHUNK_SIZE = 838860800
 
 const adModeReadWrite = 3
 const adTypeBinary = 1

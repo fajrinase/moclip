@@ -17,7 +17,7 @@ function showTopRate()
 		
 		var query = "SELECT top 9 mc_channel.title as ctitle, mc_channel.cid as cid , c.title, c.description , c.id, c.image, mc_users.uid, username, fullname";
 		query += " FROM mc_clips as c";
-		query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users ";
+		query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users where c.approve=1";
 		query += "order by floor(( select sum(rate) from mc_clip_rate where clip_id= c.id) / ( select COUNT(*) from mc_clip_rate where clip_id= c.id)) DESC"
 
 		rs.Open(query, conn);
@@ -104,7 +104,7 @@ function showTopView()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
-		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips as c order by hits DESC", conn);
+		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips as c where c.approve=1 order by hits DESC", conn);
 		
 		var total = rs.PageCount;
 		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel");
@@ -185,7 +185,7 @@ function showChannel()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
-		rs.Open("select title, id, image, description from mc_clips where chanel_id='"+intval(cid)+"' order by id DESC", conn);
+		rs.Open("select title, id, image, description from mc_clips where chanel_id='"+intval(cid)+"' and approve=1 order by id DESC", conn);
 		
 		var total = rs.PageCount;
 		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel&id="+intval(cid));
@@ -270,7 +270,7 @@ function showChannel()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
-		rs.Open("select top 9 title, id, image, description from mc_clips order by  NEWID() ", conn);
+		rs.Open("select top 9 title, id, image, description from mc_clips where approve=1 order by  NEWID() ", conn);
 		
 		var total = rs.PageCount;
 		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel");
@@ -350,7 +350,7 @@ function showJustAdded()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
-		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips as c order by id DESC", conn);
+		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips where approve=1 as c order by id DESC", conn);
 		
 		var total = rs.PageCount;
 		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel");
@@ -421,16 +421,14 @@ function listAll()
 	rs.Open("SELECT cid, title, total_clips  FROM mc_channel ORDER BY title ASC", conn);
 	
 	var total = rs("cid").count;
-	
-	Response.Write(total);
-	
+			
 	while(! rs.EOF)
 	{
 		Response.Write("<div class='cat-list-item'>");
 		Response.Write("<div class='cat-item-title'>" + rs("title") + "("+rs("total_clips")+" clips)</div>");
 		
 		var subrs = Server.CreateObject("ADODB.Recordset");
-		subrs.Open("select top 4 c.id, c.title, c.image FROM mc_clips as c where c.chanel_id="+rs("cid")+" order by c.date_added DESC", conn);
+		subrs.Open("select top 4 c.id, c.title, c.image FROM mc_clips as c where c.chanel_id="+rs("cid")+" and c.approve=1 order by c.date_added DESC", conn);
 		
 		Response.Write("<ul class='list-clips'>");
 		
