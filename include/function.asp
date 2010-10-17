@@ -4,19 +4,25 @@ function trim_text(stringtext)
 	return stringtext.replace(/^([ \t]|\n|\&nbsp;|<!--[^-]+-->)*/, "").replace(/([ \t]|\n|\&nbsp;|<!--[^-]+-->)*$/, "");
 }
 
-function trim(str, chars) {
-	return ltrim(rtrim(str, chars), chars);
-}
+function ltrim(str) 
+{ 
+    return str.replace(/^[ ]+/, ''); 
+} 
  
-function ltrim(str, chars) {
-	chars = chars || "\\s";
-	return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
-}
+function rtrim(str) 
+{ 
+    return str.replace(/[ ]+$/, ''); 
+} 
  
-function rtrim(str, chars) {
-	chars = chars || "\\s";
-	return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
-}
+function trim(str) 
+{ 
+	if(!isset(str))
+		return "";
+	else {
+		return ltrim(rtrim(new String(str))); 
+	}    
+} 
+
 
 function intval(s)
 {
@@ -137,7 +143,7 @@ function build_page(total, perpage, current, url)
 			
 			if (PageNo == current)
 			{
-				page_span +=  "&nbsp;"+PageNo+"&nbsp;";
+				page_span +=  "&nbsp;<span style='background-color:#c6c6c6;padding: 0 2px;'>"+PageNo+"</span>&nbsp;";
 			}
 			else
 			{
@@ -197,10 +203,6 @@ function displayChannelMenu()
 	rs = Server.CreateObject("ADODB.Recordset");
 
 	rs.Open("SELECT cid, title, total_clips  FROM mc_channel ORDER BY title ASC", conn);
-	
-	var total = rs("cid").count;
-	
-	Response.Write(total);
 	
 	while(! rs.EOF)
 	{

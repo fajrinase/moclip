@@ -1,4 +1,4 @@
-<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="65001"%>
 <!-- METADATA TYPE="typelib" FILE="C:\Program Files\Common Files\System\ado\msado15.dll" -->
 <!--#include file="include/config.asp" -->
 <!--#include file="include/function.asp" -->
@@ -40,6 +40,15 @@ else if(action == "clip")
 else if(action == "register") 
 {
 	var acc = new Array();
+	acc["address"]  = trim(Request.Form("address"));
+	acc["answer"]  = trim(Request.Form("answer"));
+	acc["email"]  = trim(Request.Form("email"));
+	acc["fullname"]  = trim(Request.Form("fullname"));
+	acc["mobile"]  = trim(Request.Form("mobile"));	
+	acc["phone"]  = trim(Request.Form("phone"));	
+	acc["sex"]  = trim(Request.Form("sex"));
+	acc["username"]  = trim(Request.Form("username"));
+	Response.Write(acc["username"]);
 %>
 <!--#include file="module/register.asp" -->
 <%
@@ -73,7 +82,7 @@ else
 	var query = "SELECT top 1 mc_channel.title as ctitle, mc_channel.cid as cid , c.*, mc_users.uid, username, fullname, rate_table.rate_percent, rate_table.rate_total";
 	query += " FROM mc_clips as c";
 	query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users";
-	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id)";
+	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.approve=1";
 	query += " order by id DESC";
 
 	rs = Server.CreateObject("ADODB.Recordset");
@@ -124,7 +133,7 @@ else
 	query = null;
 
 	//Display all channel and one clip on this channel
-	var squery = "select top 6 ch.cid, ch.title, c.id, c.title as clip_title, c.description, c.image, c.hits, rate_percent, rate_total from mc_channel as ch inner join mc_clips as c on(c.chanel_id = ch.cid) left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.id in(select MAX(id) from mc_clips group by chanel_id) order by NEWID()";
+	var squery = "select top 6 ch.cid, ch.title, c.id, c.title as clip_title, c.description, c.image, c.hits, rate_percent, rate_total from mc_channel as ch inner join mc_clips as c on(c.chanel_id = ch.cid) left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.id in(select MAX(id) from mc_clips group by chanel_id) and c.approve=1 order by NEWID()";
 	
 	var srs = Server.CreateObject("ADODB.Recordset");
 	srs.Open(squery, conn);
@@ -172,7 +181,7 @@ else
 	
 	srs.Close();
 	srs = null;
-	//Response.Write("<li class='clip-column'></li>");
+	Response.Write("<li class='clip-column'></li>");
 	Response.Write("</ul>");
 	
 	

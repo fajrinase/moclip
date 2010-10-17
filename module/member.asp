@@ -49,6 +49,7 @@ function logout()
 	Session.Contents("uid") = 0;
 	Session.Contents("username") = "Guest";
 	Session.Contents("fullname") = "Guest";
+	Session.Contents("isAdmin") = false;
 	
 	//Redirect
 	Response.Redirect("?");
@@ -58,6 +59,7 @@ function logout()
 
 function accountManager(type)
 {
+		error_text = "";
 		rs = Server.CreateObject("ADODB.Recordset");
 		rs.Open("SELECT top 1 *  FROM mc_users where uid='"+user["id"]+"'", conn);
 		
@@ -155,9 +157,33 @@ function myProfile(type)
 			error_text = "Invalid Question";
 		}
 		
-		if(!acc["answer"])
+		if(!isset(acc["answer"]))
 		{
 			error_text = "Invalid Answer";
+		}
+		
+		//Check username
+		rs = Server.CreateObject("ADODB.Recordset");
+		rs.Open("SELECT top 1 *  FROM mc_users where username='"+acc["username"]+"'", conn);		
+		if(! rs.EOF)
+		{
+			error_text = "Username is already exist";	
+			rs.Close();
+			rs = null;		
+		}
+		else 
+		{
+			rs.Close();
+			rs = null;
+			//Check email
+			rs = Server.CreateObject("ADODB.Recordset");
+			rs.Open("SELECT top 1 *  FROM mc_users where email='"+acc["email"]+"'", conn);		
+			if(! rs.EOF)
+			{
+				error_text = "Email is already exist";			
+			}
+			rs.Close();
+			rs = null;	
 		}
 		
 		//Handle

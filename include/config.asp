@@ -43,6 +43,7 @@ if( typeof(Session("uid")) == "undifined" && !Session("uid")) {
 	Session("uid") = 0;
 	Session("username") = "Guest";
 	Session("fullname") = "Guest";
+	Session("isAdmin") = false;
 }
 
 var user = new Array();
@@ -53,4 +54,5 @@ user["fullname"] = Session("fullname");
 
 //
 var is_admin_page = 0
+var is_admin_index = 0
 %>

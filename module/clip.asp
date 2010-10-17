@@ -10,7 +10,7 @@ function viewClip()
 	query += " FROM mc_clips as c";
 	query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users";
 	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id)";
-	query += "where id="+id;
+	query += "where id="+id+" and c.approve=1";
 
 	rs.Open(query, conn);
 	
@@ -79,7 +79,7 @@ function viewClip()
 <%
 	//Display 10 from same cat
 	var subrs = Server.CreateObject("ADODB.Recordset");
-	subrs.Open("select top 8 title, id, image, hits, description from mc_clips where chanel_id='"+cid+"' order by NEWID() DESC", conn);
+	subrs.Open("select top 8 title, id, image, hits, description from mc_clips where chanel_id='"+cid+"' and approve=1 order by NEWID() DESC", conn);
 	
 	Response.Write("<div>Same Clips</div>");
 	Response.Write("<ul class='list-same-clips'>");
@@ -148,7 +148,7 @@ function showClipRate(rate, rate_total, id, allowRate)
 function showClipComments(id) 
 {
 	var subrs = Server.CreateObject("ADODB.Recordset");
-	subrs.Open("select c.user_id, c.title, c.comment, u.fullname from mc_comments as c inner join mc_users as u on(c.user_id = u.uid) where c.clip_id='"+id+"' order by id DESC", conn);
+	subrs.Open("select c.user_id, c.title, c.comment, u.fullname from mc_comments as c inner join mc_users as u on(c.user_id = u.uid) where c.clip_id='"+id+"' and approve=1 order by id DESC", conn);
 	
 	Response.Write("<div class='clip-list-comments-title'>Comments:</div>");
 	Response.Write("<ul class='list-clip-comments'>");

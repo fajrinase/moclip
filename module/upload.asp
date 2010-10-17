@@ -2,7 +2,7 @@
 
 if(user["id"] > 0)
 {
-	
+	//Response.Write(4194304 / 8 / 1024 / 1024);
 %>
 <form name="uploadClip" method="POST" enctype="multipart/form-data" action="addclip.asp">
 <input type="hidden" name="uid" value="<%=user["id"]%>" />
