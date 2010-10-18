@@ -69,13 +69,16 @@
 										</ul>
 									</li>
 									<li class=" hasChild">
-										<a href="#" class=' item' id="menusys2" title="Upload"><span class="menusys_name">Channels</span></a>
+										<a href="default.asp?act=channel&do=all" class=' item' id="menusys2" title="Channel"><span class="menusys_name">Channels</span></a>
 										<ul>
 											<% displayChannelMenu(); %>
 										</ul>
 									</li>
 									<li class="">
 										<a href="?act=upload" class=' item' id="menusys2" title="Upload"><span class="menusys_name">Upload Clip</span></a>
+									</li>
+									<li class="">
+										<a href="?act=search" class=' item' id="menusys2" title="Search"><span class="menusys_name">Search</span></a>
 									</li>
 									<li class=" last-item hasChild">
 										<a href="#"	class=' item' id="menusys37" title="Content"><span class="menusys_name">My Account</span></a>

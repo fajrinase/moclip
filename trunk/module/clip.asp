@@ -56,6 +56,12 @@ function viewClip()
 						</object>
 					</div>
 					
+					<div class="clip-view-comment-info">
+						<div class="clip-list-comments-title">
+						<%=desc%>
+						</div>
+					</div>
+					
 					<div class="clip-view-extra-info">
 						<span class="clip-view-report" onclick="reportThisClip(<%=id%>)">Report</span>
 						<span class="clip-view-hits"><b><%=hits%></b> views</span>

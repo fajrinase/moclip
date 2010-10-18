@@ -8,7 +8,7 @@ is_admin_index = 1;
 %>
 <!--#include file="public/header.asp"-->
 <%
-if(user["id"] > 0 && Session("isAdmin") == true)
+if(admin["id"] > 0 && Session("isAdmin") == true)
 {
 %>
 		<div id="header">
@@ -105,9 +105,9 @@ function dologin()
 		if(! rs.EOF)
 		{
 			rs.MoveFirst;
-			Session.Contents("uid") = intval(new String(rs("uid")));
-			Session.Contents("username") = new String(rs("username")).toString();
-			Session.Contents("fullname") = new String(rs("fullname")).toString();
+			Session.Contents("admin_uid") = intval(new String(rs("uid")));
+			Session.Contents("admin_username") = trim(new String(rs("username")).toString());
+			Session.Contents("admin_fullname") = trim(new String(rs("fullname")).toString());
 			Session.Contents("isAdmin") = true;
 			
 			//Redirect
@@ -127,9 +127,9 @@ function dologin()
 
 function dologout()
 {
-	Session.Contents("uid") = 0;
-	Session.Contents("username") = "Guest";
-	Session.Contents("fullname") = "Guest";
+	Session.Contents("admin_uid") = 0;
+	Session.Contents("admin_username") = "Guest";
+	Session.Contents("admin_fullname") = "Guest";
 	Session.Contents("isAdmin") = false;
 	
 	//Redirect

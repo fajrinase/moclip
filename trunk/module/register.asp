@@ -4,7 +4,7 @@
 			<td width="60%">
 				<table width="100%">
 					<caption style="text-align:left; font-size: 20px; font-weight: bold;"><%
-						if(trim(error_text) != "") {
+						if(typeof(error_text) != "undefined" && trim(error_text) != "") {
 							Response.Write("<font color='red'>"+error_text+"</font>");
 							var submittext = "Register";
 						}
@@ -203,6 +203,13 @@ submitShareForm = function() {
 					form[i].focus();
 					return false;
 				}
+				var re = /[a-zA-z0-9]$/;
+				if (!form[i].value.match(re)) {
+					alert("Username can not content special character!");
+					form[i].focus();
+					return false;		
+				} 
+			}
 			}else {
 				alert("Username can not blank");
 				form[i].focus();

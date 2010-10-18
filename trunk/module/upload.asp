@@ -83,7 +83,7 @@ if(user["id"] > 0)
 					</tr>
 					
 					
-					
+					<!--
 					<tr>
 						<td>
 							<label for="private">Private Use?</label>
@@ -93,7 +93,7 @@ if(user["id"] > 0)
 						
 						</td>
 					</tr>
-					
+					-->
 					<tr>
 						<td colspan="2" align="center">
 							<input type="reset"  name="reset" value="Reset" />

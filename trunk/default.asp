@@ -74,6 +74,12 @@ else if(action == "contact")
 <!--#include file="module/contact.asp" -->
 <%
 }
+else if(action == "forgetpass") 
+{
+%>
+<!--#include file="module/getpass.asp" -->
+<%
+}
 
 else
 {
@@ -159,7 +165,7 @@ else
 					<div><a href="default.asp?act=channel&id=<%=cid%>" alt="<%=title%>"><%=title%></a></div>
 					<div class="column-channel-news-image"><a href="default.asp?act=clip&do=view&id=<%=id%>" alt="<%=clip_title%>"><img src="image.asp?f=<%=image%>&w=180&h=150" alt="<%=clip_title%>"/></a></div>
 					<div><a href="default.asp?act=clip&do=view&id=<%=id%>" alt="<%=clip_title%>"><%=clip_title%></a></div>
-					<div><%=desc%></div>
+					<div class="column-channel-news-description"><%=desc%></div>
 					<div id="clip-start-rate-<%=id%>"></div>					
 					<script type="text/javascript">
 						new loadRatingModule({ id : "clip-start-rate-<%=id%>", rated : <%=rate%>, total : <%=rate_total%>, cid : <%=cid%>, allowRate : 2 });
