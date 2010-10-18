@@ -25,7 +25,9 @@ function getFileExtension(fname) {
 
 toggleContent = function(obj) {
 	obj.oldtext = obj.value;
-	obj.value = "";
+	if(obj.defaultValue == obj.value) {
+		obj.value = "";
+	}
 
 	obj.onblur = function() {
 		

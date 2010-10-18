@@ -218,7 +218,7 @@ function getRandom5Clip()
 {
 	rs = Server.CreateObject("ADODB.Recordset");
 
-	rs.Open("SELECT top 5 title, id, description, date_added, image  FROM mc_clips ORDER BY NEWID()", conn);
+	rs.Open("SELECT top 5 title, id, description, date_added, image  FROM mc_clips where approve=1 ORDER BY NEWID()", conn);
 		
 	Response.Write("<ul class='list-clips slide-clip-row'>");
 	
@@ -249,5 +249,32 @@ function getRandom5Clip()
 	rs.Close();
 	rs = null;
 }
+
+function getNextDay(day, resetTime){
+  var days = {
+    sunday: 0, monday: 1, tuesday: 2,
+    wednesday: 3, thursday: 4, friday: 5, saturday: 6
+  };
+
+  var dayIndex = days[day.toLowerCase()];
+  if (!dayIndex) {
+    throw new Error('"' + day + '" is not a valid input.');
+  }
+
+  var returnDate = new Date();
+  var returnDay = returnDate.getDay();
+  if (dayIndex !== returnDay) {
+    returnDate.setDate(returnDate.getDate() + (dayIndex + (7 - returnDay)) % 7);
+  }
+
+  if (resetTime) {
+    returnDate.setHours(0);
+    returnDate.setMinutes(0);
+    returnDate.setSeconds(0);
+    returnDate.setMilliseconds(0);
+  }
+  return returnDate;
+}
+
 
 %>

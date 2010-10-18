@@ -9,7 +9,7 @@
     <div id="main">
 	<%
 		is_admin_page = 1
-		if( user["id"] < 1 || !Session("isAdmin"))
+		if( admin["id"] < 1 || !Session("isAdmin"))
 		{			
 			if( is_admin_index != 1 )
 				Response.Redirect("admin.asp");

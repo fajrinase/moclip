@@ -23,14 +23,20 @@ function login()
 				
 		if(! rs.EOF)
 		{
-			rs.MoveFirst;
-			Session.Contents("uid") = intval(new String(rs("uid")));
-			Session.Contents("username") = new String(rs("username")).toString();
-			Session.Contents("fullname") = new String(rs("fullname")).toString();
-			
-			//Redirect
-			//Response.Redirect("?");
-			redirect(11, "default.asp" );
+			if(trim(Request.QueryString("follow")) != "changepassword" )
+			{
+				rs.MoveFirst;
+				Session.Contents("uid") = intval(new String(rs("uid")));
+				Session.Contents("username") = new String(rs("username")).toString();
+				Session.Contents("fullname") = new String(rs("fullname")).toString();
+				
+				//Redirect
+				//Response.Redirect("?");
+				redirect(11, "default.asp" );
+			}
+			else  {
+				changePassword(intval(trim(rs("uid"))));
+			}			
 		}
 		else
 		{
@@ -52,10 +58,38 @@ function logout()
 	Session.Contents("isAdmin") = false;
 	
 	//Redirect
-	Response.Redirect("?");
+	redirect(12, "default.asp" );
+	//Response.Redirect("?");
 
 }
 
+function changePassword(uid) 
+{
+	var pass = trim(Request.Form("newpass"));
+	var renewpass = trim(Request.Form("renewpass"));
+	if(uid > 0)
+	{
+	
+	}
+	else {
+		uid = intval(Request.Form("uid"));
+	}
+		
+	if(pass != "" && renewpass != "" && uid > 0) {
+		if(pass == renewpass) {
+			conn.Execute("update mc_users set password='"+pass+"' where uid="+uid);
+			redirect(0, "default.asp?act=user&do=logout" );
+		}
+		else {
+			Response.Write("Password and Repassword are not same");
+		}
+	}
+	else {
+		Response.Write("Plaese enter new password!");
+	}
+	
+
+}
 
 function accountManager(type)
 {
@@ -70,10 +104,12 @@ function accountManager(type)
 			var acc = new Array();		
 			
 			acc["uid"] = intval(new String(rs("uid")));
-			acc["username"] = new String(rs("username")).toString();
+			acc["username"] = trim(rs("username"));
 			acc["fullname"] = new String(rs("fullname")).toString();			
 			acc["address"] = new String(rs("address")).toString();
 			acc["address"] = (acc["address"] == "null") ? "" : acc["address"];
+			
+			acc["password"] = trim(rs("password"));
 			
 			acc["phone"] = new String(rs("phone")).toString();
 			acc["phone"] = (acc["phone"] == "null") ? "" : acc["phone"];
@@ -100,6 +136,57 @@ function accountManager(type)
 	%>
 		<!--#include file="register.asp" -->
 	<%
+	
+	if(acc["uid"] > 0) {
+		%>
+			<!--<div class="view-clip-title">Change Password.</div>-->
+				<div style="width:60%; float:left">
+				<form name="uploadClip" class="search-form" onsubmit="return checkform(this)" method="post" action="default.asp?act=user&do=login&follow=changepassword" autocomplete="off">
+				<input type="hidden" name="username" value="<%=acc["username"]%>" />
+				<input type="hidden" name="email" value="<%=acc["email"]%>" />
+				<input type="hidden" name="uid" value="<%=acc["uid"]%>" />
+				<input type="hidden" name="password" value="<%=acc["password"]%>" />
+					<div>
+						<span style="width:350px; color:#CC0000">You can change your password now</span>
+					</div>
+					<div>
+						<span>New Password</span>
+						<input class="password" type="password" name="newpass" value="">
+					</div>
+					<div>
+						<span>Re enter Password</span>
+						<input class="password" type="password" name="renewpass" value="">
+					</div>
+					<div style="text-align:center">
+						<input type="submit" name="" value="Change Password" class="shareit"/>
+					</div>				
+				</form>	
+				<script type="text/javascript">
+					checkform = function(o) {
+						//checking question and answer
+							
+						if(o.newpass.value.length < 4) {
+							alert("Password can not shorter than 4 character");
+							o.newpass.focus();
+							return false;
+						}
+						else {
+							if(o.newpass.value == o.password.value) {
+								alert("New password must not same current password");
+								o.newpass.focus();
+								return false;
+							}
+							else if(o.newpass.value != o.renewpass.value) {
+								alert("New password and Re enter Password are not same");
+								o.newpass.focus();
+								return false;
+							}
+						}	
+									
+					}
+				</script>	
+		<%
+	}
 	
 }
 
@@ -206,6 +293,7 @@ function myProfile(type)
 			<!--#include file="register.asp" -->
 		<%
 	}
+	
 }
 
 
@@ -224,7 +312,7 @@ else if(doexc == "logout") {
 }
 
 else if(doexc == "manager") {
-	if(user["id"])
+	if(user["id"] > 0)
 	accountManager();
 	else
 	Response.Write("You are not login now! Please login first.");

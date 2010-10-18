@@ -302,7 +302,7 @@ function listAllDenyClips()
 {
 	//Build query string
 	var current_page		= 1;
-	var perpage 			= 10;
+	var perpage 			= intval(Request.QueryString("displace")) > 0 ? intval(Request.QueryString("displace")) : 10;
 	
 	if(isset(Request.QueryString("page")) && Request.QueryString("page") != "")
 	{
@@ -713,18 +713,39 @@ function viewReportDetails()
 
 function deleteClip(ids)
 {
+	
 	if(ids != 0 ){
-		var idarray = String(ids).split(",");	
-				
+		var idarray = String(ids).split(",");				
 		for(var i = 0; i < idarray.length; i++) {
+			rs = Server.CreateObject("ADODB.Recordset");
+			rs.CursorLocation = 3; 
 			var query = "exec removeClips "+trim(idarray[i]);
-			conn.Execute(query);
+			rs.open(query, conn);
+			while(! rs.EOF)
+			{
+				unlink(config["upload_path"]+"/"+trim(rs("path")));
+				unlink(config["upload_path"]+"/"+trim(rs("image")));
+				rs.MoveNext;
+			}
+			rs.Close();
+			rs = null;			
 		}	
 	}
 	else {
 		var id = Request.QueryString("id");	
-		conn.Execute ("exec removeClips "+id);
+		rs = Server.CreateObject("ADODB.Recordset");
+		rs.CursorLocation = 3; 
+		rs.open("exec removeClips "+id, conn);
+		if(!rs.EOF) {
+			rs.MoveFirst;
+			unlink(config["upload_path"]+"/"+trim(rs("path")));
+			unlink(config["upload_path"]+"/"+trim(rs("image")));
+		}
+		rs.Close();
+		rs = null;
 	}
+	
+	
 	
 	var type = Request.QueryString("type");		
 	if(type == "b") {

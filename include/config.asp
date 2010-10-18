@@ -21,7 +21,7 @@ config["site_path"]				= Server.MapPath("/") + "\\moclip";
 config["upload_url"]			= config["site_url"] + "/uploads";
 //config["upload_path"]			= config["site_path"] + "\\uploads";
 config["upload_path"]			= String(Server.MapPath("uploads")).replace(/admin\\/,"");
-config["image_url"]				= config["site_url"] + "/images";
+config["image_url"]				= config["site_url"] + "/public/images";
 config["image_ext"]				= "bmp,gif,jpeg,jpg,jpe,png";
 config["clip_ext"]				= "mp4,flv";
 
@@ -39,11 +39,10 @@ config["aboutus"]			= "";
 
 //User setting
 
-if( typeof(Session("uid")) == "undifined" && !Session("uid")) {
+if( typeof(Session("uid")) == "undefined" || Session("uid") < 1) {
 	Session("uid") = 0;
 	Session("username") = "Guest";
-	Session("fullname") = "Guest";
-	Session("isAdmin") = false;
+	Session("fullname") = "Guest";	
 }
 
 var user = new Array();
@@ -51,6 +50,19 @@ user["id"] = Session("uid");
 user["username"] = Session("username");
 user["fullname"] = Session("fullname");
 
+//Admin
+if( typeof(Session("admin_uid")) == "undefined" || Session("admin_uid") < 1) {
+	
+	Session("admin_uid") = 0;
+	Session("admin_username") = "Guest";
+	Session("admin_fullname") = "Guest";
+	Session("isAdmin") = false;
+}
+
+var admin = new Array();
+admin["id"] = Session("admin_uid");
+admin["username"] = Session("admin_username");
+admin["fullname"] = Session("admin_fullname");
 
 //
 var is_admin_page = 0

@@ -2,9 +2,9 @@
 
 function showTopRate()
 {
-	//Build query string
+		//Build query string
 		var current_page		= 1;
-		var perpage 			= 9;
+		var perpage 			= 10;
 		if(isset(Request.QueryString("page")) && Request.QueryString("page") != "")
 		{
 			current_page = (intval(Request.QueryString("page")) > 0) ? intval(Request.QueryString("page")) : 1;
@@ -15,13 +15,16 @@ function showTopRate()
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
 		
-		var query = "SELECT top 9 mc_channel.title as ctitle, mc_channel.cid as cid , c.title, c.description , c.id, c.image, mc_users.uid, username, fullname";
-		query += " FROM mc_clips as c";
-		query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users where c.approve=1";
-		query += "order by floor(( select sum(rate) from mc_clip_rate where clip_id= c.id) / ( select COUNT(*) from mc_clip_rate where clip_id= c.id)) DESC"
+		var query = "SELECT top 10 mc_channel.title as ctitle, c.hits, c.chanel_id as cid , c.title, c.description , c.id, c.image, c.submiter as uid, u.username, u.fullname, t_rate.rate_percent, t_rate.rate_total";
+		query += " FROM mc_clips as c ";
+		query += " INNER JOIN mc_channel ON mc_channel.cid = c.chanel_id ";
+		query += " inner JOIN mc_users as u ON(u.uid = c.submiter)";
+		query += " left join (select clip_id, count(rate) as rate_total, AVG(rate) as rate_percent from mc_clip_rate group by clip_id) as t_rate on(t_rate.clip_id = c.id)";
+		query += " where c.approve=1";
+		query += " order by rate_percent desc"
 
 		rs.Open(query, conn);
-		
+				
 		var total = rs.PageCount;
 		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel");
 				
@@ -37,13 +40,17 @@ function showTopRate()
 			while (rs.AbsolutePage == current_page && ! rs.EOF)
 			{
 				var image = trim(new String(rs("image")).toString());
-				var title = trim(new String(rs("title")).toString());
+				var ctitle = trim(new String(rs("ctitle")).toString());
+				var title = trim(rs("title"));
 				var desc = trim(new String(rs("description")).toString());
 				var submiter = trim(new String(rs("username")).toString());
 				var channel = trim(new String(rs("ctitle")).toString());
 				var id = intval(new String(rs("id")));
+				hits = intval(new String(rs("hits")));
 				var uid = intval(new String(rs("uid")));
 				var cid = intval(new String(rs("cid")));
+				rate = intval(new String(rs("rate_percent")));
+				rate_total = intval(new String(rs("rate_total")));
 				
 				if(i == 0)
 				{
@@ -64,17 +71,22 @@ function showTopRate()
 				else
 				{
 					%>
-						<li class="clip-row">
-							<a class="clip-view" href="default.asp?act=clip&do=view&id=<%=id%>" alt="">
-								<div class='clip-image'><img src="image.asp?f=<%=image%>&w=150&h=250" alt="<%=title%>"/></div>
-								<div class='clip-title'><span><%=title%></span></div>
-							</a>					
-						</li>
+						<li class="column-channel-news">
+					<div><a href="default.asp?act=channel&id=<%=cid%>" alt="<%=ctitle%>"><%=ctitle%></a></div>
+					<div class="column-channel-news-image"><a href="default.asp?act=clip&do=view&id=<%=id%>" alt="<%=title%>"><img src="image.asp?f=<%=image%>&w=180&h=150" alt="<%=title%>"/></a></div>
+					<div><a href="default.asp?act=clip&do=view&id=<%=id%>" alt="<%=title%>"><%=title%></a></div>
+					<!--<div class="column-channel-news-description"><%=desc%></div>-->
+					<div id="clip-start-rate-<%=id%>"></div>					
+					<script type="text/javascript">
+						new loadRatingModule({ id : "clip-start-rate-<%=id%>", rated : <%=rate%>, total : <%=rate_total%>, cid : <%=cid%>, allowRate : 2 });
+					</script>
+					<div>Hits <b><%=hits%></b></div>
+				</li>
 						
 					<%
 				}
 				
-				if(i++%4==0) 
+				if(i++%3==0) 
 				{
 					Response.Write("<li class='clip-column'></li>");
 				}
@@ -425,7 +437,7 @@ function listAll()
 	while(! rs.EOF)
 	{
 		Response.Write("<div class='cat-list-item'>");
-		Response.Write("<div class='cat-item-title'>" + rs("title") + "("+rs("total_clips")+" clips)</div>");
+		Response.Write("<div class='cat-item-title'><a href='default.asp?act=channel&id="+rs("cid")+"'>" + rs("title") + "("+rs("total_clips")+" clips)</div>");
 		
 		var subrs = Server.CreateObject("ADODB.Recordset");
 		subrs.Open("select top 4 c.id, c.title, c.image FROM mc_clips as c where c.chanel_id="+rs("cid")+" and c.approve=1 order by c.date_added DESC", conn);
