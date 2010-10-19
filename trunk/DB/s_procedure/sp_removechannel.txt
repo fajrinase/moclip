@@ -1,0 +1,11 @@
+CREATE PROCEDURE [dbo].[removeChannel]
+	@cid int
+AS
+select path, image from mc_clips where chanel_id= @cid
+BEGIN
+	delete from mc_report where clip_id in (select id from mc_clips where chanel_id = @cid);
+	delete from mc_comments where clip_id in (select id from mc_clips where chanel_id = @cid);
+	delete from mc_clip_rate where clip_id in (select id from mc_clips where chanel_id = @cid);
+	delete from mc_clips where chanel_id=@cid;	
+	delete from mc_channel where cid = @cid;
+END

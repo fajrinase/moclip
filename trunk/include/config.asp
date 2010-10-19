@@ -1,19 +1,5 @@
 <%
 var config = new Array();
-
-// Database , filename etc
-
-//config["sql_provider"]	= "Microsoft.Jet.OLEDB.4.0";
-
-config["sql_provider"]		= "SQLNCLI10";
-config["sql_datasource"]	= "(local)";
-config["sql_catalog"]			= "moclip";
-config["sql_userid"]			= "sa";
-config["sql_password"]		= "123456";
-
-config["db_name"]					= "moclip";
-config["sql_sourcepath"]	= "";
-
 // Site info
 config["site_name"]				= "MoClip!";
 config["site_url"]				= "http://" + Request.ServerVariables("SERVER_NAME") + "/moclip";

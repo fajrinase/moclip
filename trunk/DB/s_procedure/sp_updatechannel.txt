@@ -1,0 +1,6 @@
+CREATE PROCEDURE [dbo].[updateChannel]
+	@cid int
+AS
+BEGIN
+	update mc_channel set total_clips = (select COUNT(id) from mc_clips where chanel_id=@cid and approve=1) where cid=@cid
+END
