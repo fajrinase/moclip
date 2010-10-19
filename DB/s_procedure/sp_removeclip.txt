@@ -1,0 +1,11 @@
+CREATE PROCEDURE [dbo].[removeClips]
+	-- Add the parameters for the stored procedure here
+	@ids int	
+AS
+select path, image from mc_clips where id = @ids
+BEGIN	
+	delete from mc_report where clip_id = @ids;
+	delete from mc_comments where clip_id = @ids;
+	delete from mc_clip_rate where clip_id = @ids;	
+	delete from mc_clips where id = @ids;		
+END
