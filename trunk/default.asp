@@ -85,11 +85,20 @@ else
 {
 
 	//Show lastest clip
+	if(mysql) {
+		var query = "SELECT mc_channel.title as ctitle, mc_channel.cid as cid , c.*, mc_users.uid, username, fullname, rate_table.rate_percent, rate_table.rate_total";
+	query += " FROM mc_clips as c";
+	query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users";
+	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.approve=1";
+	query += " order by id DESC limit 1";
+	}
+	else {
 	var query = "SELECT top 1 mc_channel.title as ctitle, mc_channel.cid as cid , c.*, mc_users.uid, username, fullname, rate_table.rate_percent, rate_table.rate_total";
 	query += " FROM mc_clips as c";
 	query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users";
 	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.approve=1";
 	query += " order by id DESC";
+	}
 
 	rs = Server.CreateObject("ADODB.Recordset");
 	rs.Open(query, conn);
@@ -139,6 +148,9 @@ else
 	query = null;
 
 	//Display all channel and one clip on this channel
+	if(mysql)
+	var squery = "select ch.cid, ch.title, c.id, c.title as clip_title, c.description, c.image, c.hits, rate_percent, rate_total from mc_channel as ch inner join mc_clips as c on(c.chanel_id = ch.cid) left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.id in(select MAX(id) from mc_clips group by chanel_id) and c.approve=1 order by rand() limit 6";
+	else
 	var squery = "select top 6 ch.cid, ch.title, c.id, c.title as clip_title, c.description, c.image, c.hits, rate_percent, rate_total from mc_channel as ch inner join mc_clips as c on(c.chanel_id = ch.cid) left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id) where c.id in(select MAX(id) from mc_clips group by chanel_id) and c.approve=1 order by NEWID()";
 	
 	var srs = Server.CreateObject("ADODB.Recordset");

@@ -7,6 +7,7 @@ config["site_path"]				= Server.MapPath("/") + "\\moclip";
 config["upload_url"]			= config["site_url"] + "/uploads";
 //config["upload_path"]			= config["site_path"] + "\\uploads";
 config["upload_path"]			= String(Server.MapPath("uploads")).replace(/admin\\/,"");
+config["include_path"]			= String(Server.MapPath("include")).replace(/admin\\/,"");
 config["image_url"]				= config["site_url"] + "/public/images";
 config["image_ext"]				= "bmp,gif,jpeg,jpg,jpe,png";
 config["clip_ext"]				= "mp4,flv";
@@ -53,4 +54,7 @@ admin["fullname"] = Session("admin_fullname");
 //
 var is_admin_page = 0
 var is_admin_index = 0
+
+var cur_date = new Date();
+var now = (cur_date.getMonth() + 1) + "/"+ cur_date.getDate() + "/" + cur_date.getFullYear() + " " + cur_date.getHours() + ":" + cur_date.getMinutes() + ":" + cur_date.getSeconds();
 %>

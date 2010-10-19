@@ -5,12 +5,20 @@ function viewClip()
 	var id = intval(Request.QueryString("id"));
 	
 	rs = Server.CreateObject("ADODB.Recordset");
-	
+	if(mysql){
+	var query = "SELECT mc_channel.title as ctitle, mc_channel.cid as cid , c.*, mc_users.uid, username, fullname, rate_table.rate_percent, rate_table.rate_total";
+	query += " FROM mc_clips as c";
+	query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users";
+	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id)";
+	query += "where id="+id+" and c.approve=1 limit 1";	
+	}	
+	else {	
 	var query = "SELECT top 1 mc_channel.title as ctitle, mc_channel.cid as cid , c.*, mc_users.uid, username, fullname, rate_table.rate_percent, rate_table.rate_total";
 	query += " FROM mc_clips as c";
 	query += " INNER JOIN mc_channel  ON mc_channel.cid = c.chanel_id cross JOIN mc_users";
 	query += " left join (select clip_id, avg(rate) as rate_percent, count(rate) as rate_total FROM mc_clip_rate GROUP BY clip_id) AS rate_table ON(rate_table.clip_id = c.id)";
 	query += "where id="+id+" and c.approve=1";
+	}
 
 	rs.Open(query, conn);
 	
@@ -85,7 +93,14 @@ function viewClip()
 <%
 	//Display 10 from same cat
 	var subrs = Server.CreateObject("ADODB.Recordset");
-	subrs.Open("select top 8 title, id, image, hits, description from mc_clips where chanel_id='"+cid+"' and approve=1 order by NEWID() DESC", conn);
+	if(mysql) {
+		var query ="select title, id, image, hits, description from mc_clips where chanel_id='"+cid+"' and approve=1 order by rand() DESC limit 8"
+	}
+	else {
+		var query ="select top 8 title, id, image, hits, description from mc_clips where chanel_id='"+cid+"' and approve=1 order by NEWID() DESC"
+	}
+	
+	subrs.Open(query, conn);
 	
 	Response.Write("<div>Same Clips</div>");
 	Response.Write("<ul class='list-same-clips'>");

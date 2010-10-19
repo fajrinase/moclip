@@ -15,13 +15,24 @@ function showTopRate()
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
 		
-		var query = "SELECT top 10 mc_channel.title as ctitle, c.hits, c.chanel_id as cid , c.title, c.description , c.id, c.image, c.submiter as uid, u.username, u.fullname, t_rate.rate_percent, t_rate.rate_total";
-		query += " FROM mc_clips as c ";
-		query += " INNER JOIN mc_channel ON mc_channel.cid = c.chanel_id ";
-		query += " inner JOIN mc_users as u ON(u.uid = c.submiter)";
-		query += " left join (select clip_id, count(rate) as rate_total, AVG(rate) as rate_percent from mc_clip_rate group by clip_id) as t_rate on(t_rate.clip_id = c.id)";
-		query += " where c.approve=1";
-		query += " order by rate_percent desc"
+		if(mysql) {
+			var query = "SELECT mc_channel.title as ctitle, c.hits, c.chanel_id as cid , c.title, c.description , c.id, c.image, c.submiter as uid, u.username, u.fullname, t_rate.rate_percent, t_rate.rate_total";
+			query += " FROM mc_clips as c ";
+			query += " INNER JOIN mc_channel ON mc_channel.cid = c.chanel_id ";
+			query += " inner JOIN mc_users as u ON(u.uid = c.submiter)";
+			query += " left join (select clip_id, count(rate) as rate_total, AVG(rate) as rate_percent from mc_clip_rate group by clip_id) as t_rate on(t_rate.clip_id = c.id)";
+			query += " where c.approve=1";
+			query += " order by rate_percent desc limit 10"
+		}
+		else {
+			var query = "SELECT top 10 mc_channel.title as ctitle, c.hits, c.chanel_id as cid , c.title, c.description , c.id, c.image, c.submiter as uid, u.username, u.fullname, t_rate.rate_percent, t_rate.rate_total";
+			query += " FROM mc_clips as c ";
+			query += " INNER JOIN mc_channel ON mc_channel.cid = c.chanel_id ";
+			query += " inner JOIN mc_users as u ON(u.uid = c.submiter)";
+			query += " left join (select clip_id, count(rate) as rate_total, AVG(rate) as rate_percent from mc_clip_rate group by clip_id) as t_rate on(t_rate.clip_id = c.id)";
+			query += " where c.approve=1";
+			query += " order by rate_percent desc"
+		}		
 
 		rs.Open(query, conn);
 				
@@ -116,6 +127,10 @@ function showTopView()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
+		if(mysql) {
+		rs.Open("SELECT c.id, c.title, c.image,c.description FROM mc_clips as c where c.approve=1 order by hits DESC limit 9", conn);
+		}
+		else
 		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips as c where c.approve=1 order by hits DESC", conn);
 		
 		var total = rs.PageCount;
@@ -282,6 +297,9 @@ function showChannel()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
+		if(mysql)
+		rs.Open("select title, id, image, description from mc_clips where approve=1 order by  rand() limit 9", conn);
+		else
 		rs.Open("select top 9 title, id, image, description from mc_clips where approve=1 order by  NEWID() ", conn);
 		
 		var total = rs.PageCount;
@@ -362,6 +380,9 @@ function showJustAdded()
 		rs.CursorLocation = 3; 
 		rs.PageSize       = perpage; 
 		rs.CacheSize      = perpage;
+		if(mysql)
+		rs.Open("SELECT c.id, c.title, c.image,c.description FROM mc_clips where approve=1 as c order by id DESC limit 9", conn);
+		else
 		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips where approve=1 as c order by id DESC", conn);
 		
 		var total = rs.PageCount;
@@ -440,6 +461,9 @@ function listAll()
 		Response.Write("<div class='cat-item-title'><a href='default.asp?act=channel&id="+rs("cid")+"'>" + rs("title") + "("+rs("total_clips")+" clips)</div>");
 		
 		var subrs = Server.CreateObject("ADODB.Recordset");
+		if(mysql)
+		subrs.Open("select c.id, c.title, c.image FROM mc_clips as c where c.chanel_id="+rs("cid")+" and c.approve=1 order by c.date_added DESC limit 4", conn);
+		else
 		subrs.Open("select top 4 c.id, c.title, c.image FROM mc_clips as c where c.chanel_id="+rs("cid")+" and c.approve=1 order by c.date_added DESC", conn);
 		
 		Response.Write("<ul class='list-clips'>");

@@ -34,7 +34,7 @@ if(admin["id"] > 0 && Session("isAdmin") == true)
 			 </div>
 			<div id="center-column">
 				<div class="top-bar">
-					
+					<%=now%>
 				</div>
 				
 				<div class="table">
@@ -99,7 +99,7 @@ function dologin()
 	else
 	{
 		rs = Server.CreateObject("ADODB.Recordset");
-		rs.Open("SELECT top 1 uid, username, fullname  FROM mc_users where username='"+username+"' and password='"+password+"' and allow_acp=1", conn);
+		rs.Open("SELECT uid, username, fullname  FROM mc_users where username='"+username+"' and password='"+password+"' and allow_acp=1", conn);
 		
 				
 		if(! rs.EOF)

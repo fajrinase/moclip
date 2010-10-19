@@ -217,8 +217,13 @@ function displayChannelMenu()
 function getRandom5Clip()
 {
 	rs = Server.CreateObject("ADODB.Recordset");
+	
+	if(mysql)
+	var query = "SELECT title, id, description, date_added, image  FROM mc_clips where approve=1 ORDER BY rand() limit 5";
+	else
+	var query = "SELECT top 5 title, id, description, date_added, image  FROM mc_clips where approve=1 ORDER BY NEWID()";
 
-	rs.Open("SELECT top 5 title, id, description, date_added, image  FROM mc_clips where approve=1 ORDER BY NEWID()", conn);
+	rs.Open(query, conn);
 		
 	Response.Write("<ul class='list-clips slide-clip-row'>");
 	
