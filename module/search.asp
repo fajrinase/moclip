@@ -90,9 +90,9 @@ function search()
 function doSearch()
 {
 	//Build query
-	var query = "SELECT mc_channel.title as ctitle, c.hits, c.chanel_id as cid , c.title, c.description, c.date_added , c.id, c.image, c.submiter as uid, u.username, u.fullname, t_rate.rate_percent, t_rate.rate_total";
+	var query = "SELECT ch.title as ctitle, c.hits, c.chanel_id as cid , c.title, c.description, c.date_added , c.id, c.image, c.submiter as uid, u.username, u.fullname, t_rate.rate_percent, t_rate.rate_total";
 	query += " FROM mc_clips as c ";
-	query += " INNER JOIN mc_channel ON mc_channel.cid = c.chanel_id ";
+	query += " INNER JOIN mc_channel as ch ON ch.cid = c.chanel_id ";
 	query += " inner JOIN mc_users as u ON(u.uid = c.submiter)";
 	query += " left join (select clip_id, count(rate) as rate_total, AVG(rate) as rate_percent from mc_clip_rate group by clip_id) as t_rate on(t_rate.clip_id = c.id)";
 	query += " where c.approve=1";
@@ -100,33 +100,45 @@ function doSearch()
 	//Filter
 	if(trim(Request.QueryString("query")) != "" && trim(Request.QueryString("typeofsearch")) == "fullname" ) {
 		query += " and u.fullname like ('"+trim(Request.QueryString("query"))+"%')";
+		url="&query="+trim(Request.QueryString("query"))+"&typeofsearch=fullname";
 	}	
 	else if(trim(Request.QueryString("query")) != "" && trim(Request.QueryString("typeofsearch")) == "username" ) {
 		query += " and u.username like ('"+trim(Request.QueryString("query"))+"%')";
+		url="&query="+trim(Request.QueryString("query"))+"&typeofsearch=username";
 	}
 	else {
 		query += " and c.title like ('"+trim(Request.QueryString("query"))+"%')";
+		url="&query="+trim(Request.QueryString("query"));
 	}
+	
 	if(intval(Request.QueryString("channel")) > 0) {
 		query += " and cid="+intval(Request.QueryString("channel"))
 	}
 	if(trim(Request.QueryString("fromdate")) != "") {
 		if(trim(Request.QueryString("todate")) != "") {
 			query += " and c.date_added between '"+trim(Request.QueryString("fromdate"))+"' and '"+trim(Request.QueryString("todate"))+"'";
+			url+="&fromdate="+trim(Request.QueryString("fromdate"))+"&today="+trim(Request.QueryString("todate"));
 		}
 		else {
+			if(mysql)
+			query += " and c.date_added between '"+trim(Request.QueryString("fromdate"))+"' and NOW()";
+			else
 			query += " and c.date_added between '"+trim(Request.QueryString("fromdate"))+"' and GETDATE()";
+			url+="&fromdate="+trim(Request.QueryString("fromdate"));
 		}		
 	}
 	if(intval(Request.QueryString("rate")) > 0) {
 		query += " and t_rate.rate_percent >="+intval(Request.QueryString("rate"))
+		url+="&rate="+trim(Request.QueryString("rate"));
 	}
-	
+	if(mysql)
+	query += " order by rand()";
+	else
 	query += " order by NEWID()";
 	
 	//other stuff	
 	var current_page		= 1;
-	var perpage 			= 18;
+	var perpage 			= 6;
 	if(isset(Request.QueryString("page")) && Request.QueryString("page") != "")
 	{
 		current_page = (intval(Request.QueryString("page")) > 0) ? intval(Request.QueryString("page")) : 1;
@@ -138,9 +150,9 @@ function doSearch()
 	rs.CacheSize      = perpage;
 	
 	rs.Open(query, conn);
-				
+	
 	var total = rs.PageCount;
-	var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel");
+	var pageslink = build_page(total, perpage , current_page, "default.asp?act=search&do=dosearch" + url);
 	
 	%>
 		<div class="view-clip-title">Search result:</div>
@@ -203,6 +215,10 @@ function doSearch()
 		Response.Write("<li class='clip-column'></li>");
 		Response.Write("</ul>");
 		
+		if(current_page != "") {
+			Response.Write(pageslink);
+		}
+		
 		if(trim(Request.QueryString("query")) != "")  {
 		    if(trim(Request.Cookies("query")) != "") {
 				var keywords =  trim(Request.Cookies("query")).split(",");
@@ -238,7 +254,6 @@ function doSearch()
 	
 	
 }
-
 
 var dorequest = Request.QueryString("do");
 

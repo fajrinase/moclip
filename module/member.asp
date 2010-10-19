@@ -18,7 +18,12 @@ function login()
 	else
 	{
 		rs = Server.CreateObject("ADODB.Recordset");
-		rs.Open("SELECT top 1 uid, username, fullname  FROM mc_users where username='"+username+"' and password='"+password+"'", conn);
+		if(mysql) {
+		var query = "SELECT uid, username, fullname  FROM mc_users where username='"+username+"' and password='"+password+"' limit 1";
+		}
+		else
+		var query = "SELECT top 1 uid, username, fullname  FROM mc_users where username='"+username+"' and password='"+password+"'";
+		rs.Open(query, conn);
 		
 				
 		if(! rs.EOF)
@@ -95,7 +100,7 @@ function accountManager(type)
 {
 		error_text = "";
 		rs = Server.CreateObject("ADODB.Recordset");
-		rs.Open("SELECT top 1 *  FROM mc_users where uid='"+user["id"]+"'", conn);
+		rs.Open("SELECT *  FROM mc_users where uid='"+user["id"]+"'", conn);
 		
 		if(! rs.EOF)
 		{
@@ -251,7 +256,7 @@ function myProfile(type)
 		
 		//Check username
 		rs = Server.CreateObject("ADODB.Recordset");
-		rs.Open("SELECT top 1 *  FROM mc_users where username='"+acc["username"]+"'", conn);		
+		rs.Open("SELECT count(uid) as total FROM mc_users where username='"+acc["username"]+"'", conn);		
 		if(! rs.EOF)
 		{
 			error_text = "Username is already exist";	
@@ -264,7 +269,7 @@ function myProfile(type)
 			rs = null;
 			//Check email
 			rs = Server.CreateObject("ADODB.Recordset");
-			rs.Open("SELECT top 1 *  FROM mc_users where email='"+acc["email"]+"'", conn);		
+			rs.Open("SELECT count(uid) as total FROM mc_users where email='"+acc["email"]+"'", conn);		
 			if(! rs.EOF)
 			{
 				error_text = "Email is already exist";			
@@ -276,10 +281,8 @@ function myProfile(type)
 		//Handle
 		if(error_text == "") 
 		{
-			var d = new Date();
-			var curtime = (d.getMonth() + 1) + "/"+ d.getDate() + "/" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "." + d.getMilliseconds();
-						
-			conn.Execute("INSERT INTO mc_users (fullname, username,[password], email, phone, mobile, question, answer, address, sex, date_joined) VALUES('" + safe_query(acc["fullname"]) + "','" + safe_query(acc["username"]) + "','" + safe_query(acc["password"]) + "','" + safe_query(acc["email"]) + "','" + safe_query(acc["phone"]) + "','" + safe_query(acc["mobile"]) + "','" + safe_query(acc["question"]) + "','" + safe_query(acc["answer"]) + "','" + safe_query(acc["address"]) + "','" + intval(acc["sex"]) + "','" + curtime +"')");
+				
+			conn.Execute("INSERT INTO mc_users (fullname, username,[password], email, phone, mobile, question, answer, address, sex, date_joined) VALUES('" + safe_query(acc["fullname"]) + "','" + safe_query(acc["username"]) + "','" + safe_query(acc["password"]) + "','" + safe_query(acc["email"]) + "','" + safe_query(acc["phone"]) + "','" + safe_query(acc["mobile"]) + "','" + safe_query(acc["question"]) + "','" + safe_query(acc["answer"]) + "','" + safe_query(acc["address"]) + "','" + intval(acc["sex"]) + "','" + now +"')");
 		
 			//Back to home page
 			redirect(10,"?");

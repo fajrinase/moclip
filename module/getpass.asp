@@ -77,7 +77,7 @@ function getAccount()
 	
 	if(username != "" || email != "") 
 	{
-		var query = "select top 1 uid from mc_users where uid > 1";
+		var query = "select uid from mc_users where uid > 1";
 		if(username != "")
 			query += " and username='"+username+"'";
 		if(email != "")
@@ -177,7 +177,7 @@ function getPassword()
 	var answer = trim(Request.Form("answer"));
 	
 	if(question != "" && answer != "" && uid > 0) {
-		var query = "select top 1 username, password from mc_users where uid="+uid+" and question='"+question+"' and answer='"+answer+"'";	
+		var query = "select username, password from mc_users where uid="+uid+" and question='"+question+"' and answer='"+answer+"'";	
 		if(username != "")
 			query += " and username='"+username+"'";
 		if(email != "")
