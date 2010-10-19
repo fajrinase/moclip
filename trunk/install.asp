@@ -101,7 +101,7 @@ if( trim(Request.Form("user")) != "" && trim(Request.Form("password")) != "" )
 	path = Server.MapPath("include");
 	fo=fs.GetFolder(path);
 	tfile=fo.CreateTextFile("db.xml",true, true);
-	tfile.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+	tfile.WriteLine("<?xml version=\"1.0\"?>");
 	tfile.WriteLine("<config>");
 	
 	tfile.WriteLine("<sql_provider>"+trim(Request.Form("dbtype"))+"</sql_provider>");
