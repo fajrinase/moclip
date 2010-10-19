@@ -81,13 +81,13 @@ if( trim(Request.Form("user")) != "" && trim(Request.Form("password")) != "" )
 		tfile.Close();	
 		tfile = null;	
 		//make lock file to lock installer
-		//tfile=fo.CreateTextFile("install.lock",true, false);
+		tfile=fo.CreateTextFile("install.lock",true, false);
 		tfile = null;
 		fo = null;		
 		fs = null;
 	}
 	else {
-		Response.Write("You can not install, please remove <b>\""+Server.MapPath("include")+"\\install.lock\"</b> file if you want to reinstall.");
+		Response.Write("You can not install now!<br /> Remove <b>\""+Server.MapPath("include")+"\\install.lock\"</b> file if you want to reinstall.");
 	}
 }
 else
