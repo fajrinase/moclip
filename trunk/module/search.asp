@@ -7,6 +7,7 @@ function search()
 		<link type="text/css" rel="stylesheet" media="all" href="public/js/dhtmlgoodies_calendar/dhtmlgoodies_calendar.css" />
 
 		<div class="view-clip-title">Search Clip</div>
+		<div style="float:left; width: 350px;">
 		<form name="uploadClip" method="get" class="search-form" onsubmit="return searchSubmit(this)">
 			<input type="hidden" name="act" value="search" />
 			<input type="hidden" name="do" value="dosearch" />
@@ -69,6 +70,14 @@ function search()
 				</select>
 			</div>
 		</form>
+		</div>
+		<div style="float:left; width: 350px;text-align:justify;">
+		<%
+			displayKeyword();
+		%>
+		</div>
+		
+		<div style="clear:both"></div>
 		
 		<script type="text/javascript">
 			searchSubmit = function(obj) {
@@ -225,7 +234,7 @@ function doSearch()
 				var newArray = new Array();
 				var added = false;
 				for(var j = keywords.length - 1; ; j--) {					
-					if(j < 0 || j < keywords.length - 5) break;					
+					if(j < 0 || j < keywords.length - 10) break;					
 					var key = keywords[j].split(":");
 										
 					if(trim(Request.QueryString("query")) == key[0]) {
@@ -252,7 +261,6 @@ function doSearch()
 	rs = null;
 	
 	
-	
 }
 
 var dorequest = Request.QueryString("do");
@@ -263,8 +271,37 @@ if(dorequest == "dosearch")
 {
 	doSearch();
 }
-else
+
+
+function displayKeyword() 
 {
-	Response.Write(Request.Cookies("query"));
+	var keyword = ["clips", "movies", "funny", "arts", "TV", "Sport", "muisc", "Entertainment", "Ads", "News", "Love", "Life", "IT", "run"];
+	
+	var keywords =  trim(Request.Cookies("query")).split(",");
+	for(var j = keywords.length - 1; ; j--) {					
+		if(j < 0 || j < keywords.length - 10) break;					
+		var key = keywords[j].split(":");		
+		keyword.splice(j,1,key[0]);
+	}
+		
+	var color = ["red", "green", "blue", "#F01236", "#FEA401", "#8A109A", "#ED1C24" , "#68C543", "#90C140", "#ddd"];
+	//for(var k=0; k < keyword.length; k++){
+	//	var size = Math.floor(Math.random()*11);
+	//	Response.Write("<a style='color:"+color[k]+"; font-size:"+(13+size)+"px;padding: 10px'>"+keyword[k]+"</a>")
+	//}
+	while(keyword.length > 0) {
+		try {
+			var k = Math.round(Math.random()*11);
+			k += k;
+			k = k > 10 ? 10 : k; 			
+			var word = keyword.splice(k, 1);
+			colour =  "#"+(Math.random()*0xFFFFFF<<0).toString(16);
+			var size = Math.round(Math.random()*11);
+			if(word != "")
+			Response.Write("<a href='default.asp?act=search&do=dosearch&query="+word+"' style='display:inline-block;color:"+colour+"; font-size:"+(11+size+k)+"px;padding: 10px'>"+word+"</a>")
+		} catch(e) {}
+	}	
 }
+
+
 %>

@@ -17,7 +17,7 @@ For questions please be as detailed and thorough as you can, so we can do a writ
 
 if(doaction == "doPost")
 {
-	postwSugguestion();
+	postSugguestion();
 }
 showSugguestion();
 
