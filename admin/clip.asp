@@ -328,19 +328,19 @@ function listAllDenyClips()
 	if(isset(Request.QueryString("username")) && Request.QueryString("username") != "" )
 	{
 		query += " and username like '" + safe_query(Request.QueryString("username")) + "%'";
-		url += "&username="+Request.QueryString("username");
+		url += "&username="+safe_query(Request.QueryString("username"));
 	}
 	//Fullname
 	if(isset(Request.QueryString("fullname")) && Request.QueryString("fullname") != "" )
 	{
 		query += " and fullname like '"+ safe_query(Request.QueryString("fullname")) + "%'";
-		url += "&fullname="+Request.QueryString("fullname");
+		url += "&fullname="+safe_query(Request.QueryString("fullname"));
 	}	
 	//Clipname
 	if(isset(Request.QueryString("clipname")) && Request.QueryString("clipname") != "" )
 	{
 		query += " and mc_clips.title like '"+ safe_query(Request.QueryString("clipname")) + "%'";
-		url += "&clipname="+Request.QueryString("clipname");
+		url += "&clipname="+safe_query(Request.QueryString("clipname"));
 	}	
 	query += " order by id DESC";	
 	
@@ -756,7 +756,7 @@ function deleteClip(ids)
 
 function editClipDetails()
 {
-	var id = Request.QueryString("id");
+	var id = intval(Request.QueryString("id"));
 	var type = Request.QueryString("type");
 	
 	rs = Server.CreateObject("ADODB.Recordset");

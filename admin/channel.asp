@@ -140,14 +140,19 @@ function listChannel()
 function addChannel(type)
 {
 	var title = "";
-	var cid = Request.QueryString("cid");
-	
+	var cid = intval(Request.QueryString("cid"));
+		
 	if(type == "edit" && cid > 0)
 	{
 		rs = Server.CreateObject("ADODB.Recordset");
-		rs.Open("SELECT cid, title FROM mc_channel where cid="+cid, conn);	
-		rs.moveFirst;
-		title = trim(new String(rs("title")).toString());
+		rs.Open("SELECT cid, title FROM mc_channel where cid="+cid, conn);
+		if(!rs.EOF) {
+			rs.moveFirst;
+			title = trim(new String(rs("title")).toString());
+		}
+		else {
+			Response.Write("No channel found. Will add new channel when you submit.");
+		}
 	}
 	%>
 		<form action="?act=<%=(type == "edit") ? "doedit" : "doadd"%>" method="post" onSubmit="return checkForm(this)">

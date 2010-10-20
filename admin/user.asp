@@ -124,7 +124,7 @@ function listAll()
 
 function viewDetails()
 {
-	var uid = Request.QueryString("uid");
+	var uid = intval(Request.QueryString("uid"));
 	rs = Server.CreateObject("ADODB.Recordset");
 	rs.Open("SELECT * FROM mc_users where uid="+uid, conn);	
 	
