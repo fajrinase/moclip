@@ -17,6 +17,7 @@ txt[1]	= "Your Search Keyword is too short!";
 txt[10] = "Register Success. Please try to login."
 txt[11] = "You are login successfull";
 txt[12] = "You are logout now";
+txt[13] = "You are not login now";
 
 //upload
 txt[20] = "Your Clip was uploaded Success. It must be approved before other people can watch it."

@@ -329,7 +329,7 @@ else if(doexc == "register") {
 	myProfile("new");
 }
 else {
-	
+	redirect(13, "default.asp?act=register");
 }
 
 %>

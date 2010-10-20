@@ -34,11 +34,92 @@ if(admin["id"] > 0 && Session("isAdmin") == true)
 			 </div>
 			<div id="center-column">
 				<div class="top-bar">
-					<%=now%>
+					Time Now: <%=now%>
 				</div>
 				
-				<div class="table">
-				   
+				<div class="top-bar">
+				<h1><a href='clip.asp'>Clips</a></h1>
+<%
+	//Show statistic
+	rs = Server.CreateObject("ADODB.Recordset");
+	
+	Response.Write("<ul>");
+	var total = Array();
+	
+	var query = "select count(id) as total from mc_clips";
+	rs.open(query, conn);
+	if(!rs.EOF) {
+		rs.MoveFirst;
+		total["clips"] = intval(rs("total"));
+	}
+	Response.Write("<li>Total clips: "+total["clips"]+"</li>");	
+	rs.Close();
+	
+	
+	var query = "select count(id) as total from mc_clips where approve=0";
+	rs.open(query, conn);
+	if(!rs.EOF) {
+		rs.MoveFirst;
+		total["clips_upload"] = intval(rs("total"));
+	}
+	Response.Write("<li><a href='clip.asp?act=waitting'>Just uploaded clips: "+total["clips_upload"]+"</a></li>");
+	rs.Close();
+	
+	Response.Write("<li><a href='clip.asp'>Displayed clips: "+(total["clips"] - total["clips_upload"])+"</a></li>");
+	
+	
+	Response.Write("</ul>");
+
+%>
+				</div>
+				<div class="top-bar">
+				<h1><a href='comment.asp'>Comments</a></h1>
+<%	
+	Response.Write("<ul>");
+	var query = "select count(id) as total from mc_comments where approve=1";
+	rs.open(query, conn);
+	if(!rs.EOF) {
+		rs.MoveFirst;
+		var total = intval(rs("total"));
+	}
+	Response.Write("<li><a href='comment.asp'>Total displayed comments: "+total+"</a></li>");
+	rs.Close();
+	
+	
+	var query = "select count(id) as total from mc_comments where approve=0";
+	rs.open(query, conn);
+	if(!rs.EOF) {
+		rs.MoveFirst;
+		var total = intval(rs("total"));
+	}
+	Response.Write("<li><a href='comment.asp?act=aprrovelist'>Total hidden comments: "+total+"</a></li>");
+	rs.Close();
+	
+	
+	Response.Write("</ul>");
+
+%>
+				</div>
+				<div class="top-bar">
+				<h1><a href='user.asp'>Users</a></h1>
+<%
+	//Show statistic
+	Response.Write("<ul>");
+	var total = Array();
+	
+	var query = "select count(uid) as total from mc_users";
+	rs.open(query, conn);
+	if(!rs.EOF) {
+		rs.MoveFirst;
+		total["users"] = intval(rs("total"));
+	}
+	Response.Write("<li><a href='user.asp'>Total users: "+total["users"]+"</a></li>");	
+	rs.Close();
+	
+	rs = null;
+	Response.Write("</ul>");
+
+%>
 				</div>
 						   
 			</div>            
