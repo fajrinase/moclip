@@ -51,7 +51,7 @@ else {
 
 function allow()
 {
-	var id = Request.QueryString("uid");	
+	var id = intval(Request.QueryString("uid"));	
 	conn.Execute ("update mc_users set allow_acp=1 where uid="+id);
 	
 	var url = Request.ServerVariables("HTTP_REFERER");
@@ -66,7 +66,7 @@ function allow()
 
 function disallow()
 {
-	var id = Request.QueryString("uid");	
+	var id = intval(Request.QueryString("uid"));	
 	if(id > 1)
 	{
 		conn.Execute ("update mc_users set allow_acp=0 where uid="+id);

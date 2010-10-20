@@ -215,7 +215,7 @@ function showUnApproveList()
 
 function viewDetails()
 {
-	var id = Request.QueryString("id");
+	var id = intval(Request.QueryString("id"));
 	var type = Request.QueryString("type");
 	
 	rs = Server.CreateObject("ADODB.Recordset");
@@ -288,7 +288,7 @@ function viewDetails()
 
 function doApprove()
 {
-	var id = Request.QueryString("id");	
+	var id = intval(Request.QueryString("id"));	
 	conn.Execute ("update mc_comments set approve=1 where id="+id);
 	
 	redirect(11, "comment.asp?act=aprrovelist");
@@ -302,7 +302,7 @@ function dounApprove()
 
 function doDelete()
 {
-	var id = Request.QueryString("id");	
+	var id = intval(Request.QueryString("id"));	
 	var type =  Request.QueryString("type");	
 	conn.Execute ("delete from mc_comments where id="+id);
 	if(type  == "a") {
