@@ -22,6 +22,9 @@ txt[13] = "You are not login now";
 //upload
 txt[20] = "Your Clip was uploaded Success. It must be approved before other people can watch it."
 
+//Suggestion
+txt[30] = "Your suggestion was added.";
+
 if(isset(txt[Request.QueryString("id")]))
 {
 	msg = txt[Request.QueryString("id")];
