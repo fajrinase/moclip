@@ -73,10 +73,15 @@ function show_error(code)
 
 function safe_query(s)
 {
-	s = String(s);
-	s = s.replace(new RegExp("'", "g"), "&#39;");
-	s = s.replace(new RegExp('"', "g"), "&quot;");
-	
+	s = new String(s);
+	//s = s.replace('/"/', "&quot;");
+	//s = s.replace("/'/", "&#39;");
+	//str = str.replace(/&amp;/g,"&");
+	//str = str.replace(/&lt;/g,"<");
+	//str =  str.replace(/&gt;/g,">");
+
+	s = s.replace(new RegExp("'", "g"), "&#39;");	
+	//s = s.replace(new RegExp('"', "g"), "&quot;");
 	return s;
 }
 
