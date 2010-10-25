@@ -209,7 +209,6 @@ submitShareForm = function() {
 					form[i].focus();
 					return false;		
 				} 
-			}
 			}else {
 				alert("Username can not blank");
 				form[i].focus();

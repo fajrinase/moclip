@@ -244,7 +244,7 @@ function commentClip()
 		var title = safe_query(Request.QueryString("title"));
 		var content = safe_query(Request.QueryString("content"));
 		
-		var query = "insert into mc_comments (clip_id, user_id, title, comment) values("+id+","+user["id"]+", '"+title+"', '"+content+"')";
+		var query = "insert into mc_comments (clip_id, user_id, title, comment) values("+id+","+user["id"]+", N'"+title+"', N'"+content+"')";
 		
 		conn.Execute(query);
 		Response.Write("<script>alert('Your comment was susscessfull added'); window.close()</script>");		

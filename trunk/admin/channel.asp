@@ -191,12 +191,12 @@ function doaddChannel(type)
 		if(type == "edit")
 		{
 			var cid = intval(Request.Form("cid"));
-			conn.Execute ("update mc_channel set title ='"+safe_query(title)+"' where cid="+cid);
+			conn.Execute ("update mc_channel set title =N'"+safe_query(title)+"' where cid="+cid);
 			redirect(7, "channel.asp");
 		}
 		else
 		{
-			conn.Execute ("insert into mc_channel (title) values('"+safe_query(title)+"')");
+			conn.Execute ("insert into mc_channel (title) values(N'"+safe_query(title)+"')");
 			redirect(5, "channel.asp");
 		}
 	}

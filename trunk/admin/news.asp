@@ -145,7 +145,7 @@ function postNews(type)
 			tinyMCE.init({
 		mode : "exact",
 		elements : "elm1",
-		theme : "advanced",
+		theme : "simple",
 		plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
 
 		// Theme options
@@ -225,11 +225,11 @@ function dopostNews(type)
 	if(type == "edit") 
 	{
 		nid = intval(Request.Form("nid"));
-		conn.Execute("update mc_news set title='"+title+"', content='"+content+"', date_added='"+now+"', image='"+image+"', description='"+description+"' where nid="+nid+"");
+		conn.Execute("update mc_news set title=N'"+title+"', content=N'"+content+"', date_added='"+now+"', image='"+image+"', description=N'"+description+"' where nid="+nid+"");
 	}
 	else
 	{
-		var query = "insert into mc_news values('"+title+"', '"+content+"', '"+now+"', "+admin["id"]+", '"+image+"', '"+description+"')";
+		var query = "insert into mc_news values(N'"+title+"', N'"+content+"', '"+now+"', "+admin["id"]+", '"+image+"', N'"+description+"')";
 		conn.Execute(query);
 	}
 	
