@@ -1298,3 +1298,54 @@ redirect
 	padding: 10px 20px;
 	border: 1px solid #0099FF;
 }
+
+/**
+*	News
+*/
+.news-first-artical {
+
+}
+
+.news-first-artical  div{
+	float: left;
+	width: 300px;
+}
+
+.news-first-artical div:last-child {
+	clear : both;
+	line-height : 0;
+	height : 0;
+}
+
+.news-fisrt-image {
+	width: 290px;
+	overflow: hidden;
+	border : 1px solid #ddd;
+	padding : 1px;
+	margin-right : 5px;
+}
+.news-fisrt-title {
+	width: 400px !important;		
+}
+.news-fisrt-title  a {
+	color : #D53580;
+	font-size : 18px;
+}
+.news-fisrt-desc {
+	width: 400px !important;
+}
+.news-fisrt-orther {
+	color : #c2c2c2;
+}
+
+.more-news-list {
+	float: left;
+	width: 330px;
+	margin-top: 10px;
+}
+
+.clear {
+	clear : both;
+	line-height : 0;
+	height : 0;
+}

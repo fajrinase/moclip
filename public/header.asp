@@ -58,15 +58,7 @@
 										<a href="#" class=' item' id="menusys1" title="Home"><span class="menusys_name">Home</span></a>
 									</li>
 									<li class=" hasChild">
-										<a href="#" class=' item' id="menusys27" title="Video"><span class="menusys_name">Videos</span></a>
-										<ul>
-											<li class="first-item">
-												<a href="default.asp?act=channel&do=tophit" class=' item' id="menusys60" title="Top View"><span class="menusys_name">Top View</span></a>
-											</li>
-											<li class="last-item">
-												<a href="default.asp?act=channel&do=toprate" class=' item' id="menusys61" title="Top Rate"><span class="menusys_name">Top Rate</span></a>
-											</li>											
-										</ul>
+										<a href="default.asp?act=news" class=' item' id="menusys27" title="News"><span class="menusys_name">News</span></a>										
 									</li>
 									<li class=" hasChild">
 										<a href="default.asp?act=channel&do=all" class=' item' id="menusys2" title="Channel"><span class="menusys_name">Channels</span></a>

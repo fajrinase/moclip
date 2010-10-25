@@ -1,0 +1,512 @@
+GO
+/****** Object:  Table [dbo].[mc_channel]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_channel](
+	[cid] [int] IDENTITY(1,1) NOT NULL,
+	[title] [nvarchar](200) NOT NULL,
+	[total_clips] [int] NOT NULL,
+ CONSTRAINT [PK_mc_chanel] PRIMARY KEY CLUSTERED 
+(
+	[cid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[mc_channel] ON
+INSERT [dbo].[mc_channel] ([cid], [title], [total_clips]) VALUES (1, N'Arts', 1)
+INSERT [dbo].[mc_channel] ([cid], [title], [total_clips]) VALUES (2, N'Movies & TV', 3)
+INSERT [dbo].[mc_channel] ([cid], [title], [total_clips]) VALUES (3, N'Sports', 1)
+INSERT [dbo].[mc_channel] ([cid], [title], [total_clips]) VALUES (4, N'Tech & Science', 1)
+INSERT [dbo].[mc_channel] ([cid], [title], [total_clips]) VALUES (5, N'Funny', 1)
+INSERT [dbo].[mc_channel] ([cid], [title], [total_clips]) VALUES (6, N'Clips', 6)
+SET IDENTITY_INSERT [dbo].[mc_channel] OFF
+/****** Object:  Table [dbo].[mc_news]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_news](
+	[nid] [int] IDENTITY(1,1) NOT NULL,
+	[title] [nvarchar](200) NULL,
+	[content] [ntext] NULL,
+	[date_added] [datetime] NULL,
+	[submiter] [int] NULL,
+	[image] [nvarchar](200) NULL,
+	[description] [nvarchar](500) NULL,
+ CONSTRAINT [PK_mc_news] PRIMARY KEY CLUSTERED 
+(
+	[nid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[mc_news] ON
+INSERT [dbo].[mc_news] ([nid], [title], [content], [date_added], [submiter], [image], [description]) VALUES (2, N'Tranh tài cùng t? phú Donald Trump', N'<p class="Normal">&ldquo;Ngu?i t?p s? c?a Donald Trump&rdquo; l&agrave; cu?c t&igrave;m ki?m nh&agrave;  qu?n l&yacute; kinh doanh t&agrave;i ba do ch&iacute;nh Donald Trump l&agrave;m host ki&ecirc;m nh&agrave; s?n  xu?t. Chuong tr&igrave;nh c&oacute; 18 ?ng vi&ecirc;n du?c chia l&agrave;m hai d?i tranh t&agrave;i v?i  nhau. C&aacute;c d?i s? c&oacute; co h?i du?c l&agrave;m vi?c c&ugrave;ng nh?ng nh&agrave; qu?n l&yacute; h&agrave;ng d?u  trong m?i linh v?c, t&ugrave;y thu?c v&agrave;o nhi?m v? du?c giao. Ngu?i th?ng cu?c  l&agrave; ngu?i ch?ng minh du?c kh? nang l&agrave;m vi?c theo nh&oacute;m, kh? nang l&atilde;nh d?o,  &oacute;c s&aacute;ng t?o, v&agrave; c? t&agrave;i&hellip; bu&ocirc;n b&aacute;n l? du?ng. Gi?i thu?ng d&agrave;nh cho ngu?i  chi?n th?ng l&agrave; b?n h?p d?ng m?t nam l&agrave;m vi?c t?i nh?ng c&ocirc;ng ty h&agrave;ng d?u  trong t?p do&agrave;n c?a Donald Trump.</p>
+<table border="0" cellspacing="0" cellpadding="3" width="1" align="center">
+<tbody>
+<tr>
+<td><img src="http://vnexpress.net/Files/Subject/3B/A2/20/8A/trump1.jpg" border="1" alt="Donald Trump l&agrave; nh&agrave; s?n xu?t ki&ecirc;m host c?a chuong tr&igrave;nh" width="400" height="534" /></td>
+</tr>
+<tr>
+<td class="Image">Donald Trump l&agrave; nh&agrave; s?n xu?t ki&ecirc;m host c?a chuong tr&igrave;nh "The Apprentice".</td>
+</tr>
+</tbody>
+</table>
+<p class="Normal">Donald Trump sinh ng&agrave;y 14/6/1946 t?i New York trong  m?t gia d&igrave;nh chuy&ecirc;n kinh doanh b?t d?ng s?n. Sau khi t?t nghi?p d?i h?c,  &ocirc;ng l&agrave;m vi?c ngay t?i c&ocirc;ng ty c?a cha m&igrave;nh. Nam 1974, khi d&atilde; linh h?i  du?c c&aacute;c k? nang kinh doanh, Donald Trump m? c&ocirc;ng ty ri&ecirc;ng v&agrave; th&agrave;nh c&ocirc;ng  vang d?i. Danh m?c b?t d?ng s?n thu?c quy?n s? h?u c?a &ocirc;ng tang l&ecirc;n v?i  con s? ch&oacute;ng m?t.</p>
+<p class="Normal">Kh&ocirc;ng ch? th&agrave;nh c&ocirc;ng tr&ecirc;n th? tru?ng b?t d?ng s?n,  Donald Trump cung n?i b?t trong linh v?c truy?n h&igrave;nh. &Ocirc;ng s? h?u nhi?u  chuong tr&igrave;nh gi?i tr&iacute;, th? thao v&agrave; c&oacute; ph?n h&ugrave;n trong c&aacute;c cu?c thi s?c  d?p nhu Hoa h?u Ho&agrave;n vu, Hoa h?u M? v&agrave; Hoa h?u tu?i m?i l?n c?a M?.  Ngo&agrave;i ra, Donald Trump c&ograve;n l&agrave; t&aacute;c gi? c?a nhi?u quy?n s&aacute;ch d?y l&agrave;m gi&agrave;u  n?i ti?ng th? gi?i.</p>
+<table border="0" cellspacing="0" cellpadding="3" width="1" align="center">
+<tbody>
+<tr>
+<td><img src="http://vnexpress.net/Files/Subject/3B/A2/20/8A/trump3.jpg" border="1" alt="&Ocirc;ng tr&ugrave;m Donald Trump c&ugrave;ng c&aacute;c th&iacute; sinh trong m?t chuong tr&igrave;nh " width="490" height="298" /></td>
+</tr>
+<tr>
+<td class="Image">&Ocirc;ng tr&ugrave;m Donald Trump c&ugrave;ng c&aacute;c th&iacute; sinh trong m?t chuong tr&igrave;nh "Ngu?i t?p s?".</td>
+</tr>
+</tbody>
+</table>
+<p class="Normal">L&agrave; m?t doanh nh&acirc;n th&agrave;nh c&ocirc;ng tr&ecirc;n nhi?u linh v?c,  Donald Trump d&atilde; mang nh?ng kinh nghi?m tr&ecirc;n thuong tru?ng v?n d?ng v&agrave;o  chuong tr&igrave;nh &ldquo;Ngu?i t?p s? c?a Donald Trump&rdquo;, t?o ra nh?ng th? th&aacute;ch r?t  da d?ng, t? nh?ng c&ocirc;ng vi?c li&ecirc;n quan d?n c&aacute;c thuong hi?u n?i ti?ng nhu  Microsoft, Lamborghini cho d?n nh?ng d? &aacute;n nh? nhu r?a xe, b&aacute;n m?t ong&hellip;  T?t c? d&atilde; bi?n th&agrave;nh &aacute;p l?c d&agrave;nh cho ngu?i choi, bu?c h? ph?i c&oacute; du?c  nh?ng suy lu?n ch?t ch? v&agrave; s?c b&eacute;n d? tr? l?i chuong tr&igrave;nh d?n ph&uacute;t cu?i  c&ugrave;ng.</p>
+<p class="Normal">Ðu?c g?p g? v&agrave; &ldquo;choi&rdquo; c&ugrave;ng Donald Trump qu? l&agrave; m?t co  h?i b? &iacute;ch cho nh?ng ai dam m&ecirc; kinh doanh. Nh&agrave; t? ph&uacute; 64 tu?i n&agrave;y s?  mang d?n cho ngu?i tham gia chuong tr&igrave;nh cung nhu kh&aacute;n gi? truy?n h&igrave;nh  nh?ng b&agrave;i h?c d? th&agrave;nh c&ocirc;ng trong cu?c s?ng, d&oacute; l&agrave; s? nang d?ng, kh&ocirc;ng  ng?ng h?c h?i v&agrave; ki?n th?c th&igrave; c&oacute; ? kh?p m?i noi. Ð?c bi?t, m?i ngu?i s?  g?t h&aacute;i du?c nh?ng th? m&agrave; kh&ocirc;ng t&agrave;i n&agrave;o t&igrave;m th?y du?c trong c&aacute;c l?p h?c  kinh t? th&ocirc;ng thu?ng.</p>
+<table border="0" cellspacing="0" cellpadding="3" width="1" align="center">
+<tbody>
+<tr>
+<td><img src="http://vnexpress.net/Files/Subject/3B/A2/20/8A/trump2.jpg" border="1" alt="Ngu?i choi ph?i th? hi?n s? s&aacute;ng t?o, d?u &oacute;c s?c b&eacute;n, kh? nang linh ho?t... trong bu&ocirc;n b&aacute;n, thuong th?o." width="490" height="326" /></td>
+</tr>
+<tr>
+<td class="Image">Ngu?i choi ph?i th? hi?n s? s&aacute;ng t?o, d?u &oacute;c s?c b&eacute;n, kh? nang linh ho?t... trong bu&ocirc;n b&aacute;n, thuong th?o.</td>
+</tr>
+</tbody>
+</table>
+<p class="Normal">Tuong t? v?i t?m ?nh hu?ng c?a t? ph&uacute; Donald Trump l&ecirc;n  x&atilde; h?i M?, chuong tr&igrave;nh &ldquo;Ngu?i t?p s? c?a Donald Trump&rdquo; do &ocirc;ng s?n xu?t  cung t?o s?c h&uacute;t m?nh m? kh&ocirc;ng k&eacute;m. B?t ch?p nh?ng show truy?n h&igrave;nh  th?c t? v? kinh doanh li&ecirc;n t?c th?t b?i, show c?a Donald Trump v?n  &ldquo;s?ng&rdquo; v&agrave; &ldquo;s?ng&rdquo; r?t m?nh m?. &ldquo;Ngu?i t?p s? c?a Donald Trump&rdquo; d?t t? l?  l&ecirc;n d?n hon 20 tri?u ngu?i xem m?i tu?n, m?t con s? k? l?c v&agrave; ?n tu?ng  d?i v?i m?t qu?c gia c&oacute; qu&aacute; nhi?u th? d? gi?i tr&iacute; nhu M?.</p>', CAST(0x00009E1A01188CB4 AS DateTime), 1, N'http://vnexpress.net/Files/Subject/3B/A2/20/8A/trump2.jpg', N'Ông trùm Donald Trump s? xu?t hi?n trong chuong trình truy?n hình th?c t? h?p d?n “Ngu?i t?p s? c?a Donald Trump” vào lúc 22h ch? nh?t hàng tu?n trên sóng HTV2.')
+INSERT [dbo].[mc_news] ([nid], [title], [content], [date_added], [submiter], [image], [description]) VALUES (3, N'Sao Vi?t b?i h?i v?i &#39;Cánh d?ng b?t t?n&#39;', N'<p class="Normal"><span style="color: #3f3f3f;"><strong>Ca si H?ng Nhung: T&ocirc;i s? t&igrave;m d?c truy?n &#39;C&aacute;nh d?ng b?t t?n&#39;</strong></span></p>
+<p class="Normal">T&ocirc;i chua d?c truy?n d&agrave;i <em>C&aacute;nh d?ng b?t t?n</em> c?a Nguy?n Ng?c Tu nhung sau khi xem b? phim chuy?n th? t&ocirc;i quy?t d?nh s? t&igrave;m d?c truy?n.</p>
+<p class="Normal">Trong bu?i chi?u t?i 22/10, t&ocirc;i n&aacute;n l?i trong r?p cho  d?n khi nh?ng d&ograve;ng ch? cu?i c&ugrave;ng ch?y tr&ecirc;n m&agrave;n h&igrave;nh h?t h?n. T&ocirc;i d&atilde; kh&oacute;c  r?t nhi?u v&igrave; b? phim qu&aacute; x&uacute;c d?ng, xem xong r?i m&agrave; v?n th?y nhu c&ograve;n c?m  gi&aacute;c s?ng trong b? phim. Ho&agrave;n c?nh c?a nh&acirc;n v?t d&atilde; truy?n du?c nh?ng  rung c?m v&agrave;o ngu?i xem.</p>
+<p class="Normal">So v?i tru?c, g?n d&acirc;y t&ocirc;i m?i thu?ng di xem phim Vi?t  Nam. Qua b? phim n&agrave;y, c&oacute; th? th?y, phim Vi?t Nam ng&agrave;y c&agrave;ng kh?i s?c.  Tru?c d&acirc;y, phim Vi?t c&ograve;n g&acirc;y c?m gi&aacute;c gi?ng s&acirc;n kh?u k?ch. Nhung phim  "C&aacute;nh d?ng b?t t?n" d&atilde; ch?m d?n du?c s? th?t ch? kh&ocirc;ng c&ograve;n l&agrave; s? bi?u  di?n c?a di?n vi&ecirc;n. B? phim th?t d?m ch?t di?n ?nh. &Acirc;m nh?c trong phim  r?t hay, cu?n ngu?i ta v&agrave;o t?ng khung c?nh.</p>
+<p class="Normal">T&ocirc;i r?t th&iacute;ch vai di?n c?a Ð? H?i Y?n (Suong) v&agrave; d?c  bi?t l&agrave; vai di?n c?a Lan Ng?c (Nuong). T&ocirc;i th?t s? bi?t on do&agrave;n phim d&atilde;  mang d?n m?t t&aacute;c ph?m gi&agrave;u c?m x&uacute;c nhu th?.</p>
+<table border="0" cellspacing="0" cellpadding="3" width="1" align="center">
+<tbody>
+<tr>
+<td><img src="http://vnexpress.net/Files/Subject/3B/A2/1F/F4/IMG_6291to.jpg" border="1" alt="Ca si H?ng Nhung (ph?i) r?t th&iacute;ch vai di?n c?a Lan Ng?c (tr&aacute;i, vai Nuong) trong phim &#39;C&aacute;nh d?ng b?t t?n" width="400" height="547" /></td>
+</tr>
+<tr>
+<td class="Image">Ca si H?ng Nhung (ph?i) r?t th&iacute;ch vai di?n c?a Lan Ng?c (tr&aacute;i, vai Nuong) trong phim "C&aacute;nh d?ng b?t t?n".</td>
+</tr>
+</tbody>
+</table>
+<p class="Normal"><span style="color: #3f3f3f;"><strong>Di?n vi&ecirc;n Ng&ocirc; Thanh V&acirc;n: Gi&aacute; phim du?c d?y d?n t?n c&ugrave;ng s? kh?c li?t</strong></span></p>
+<p class="Normal">Ð&acirc;y l&agrave; l?n d?u ti&ecirc;n t&ocirc;i di xem <em>C&aacute;nh d?ng b?t t?n</em>.  Ra kh?i r?p m&agrave; nu?c m?t t&ocirc;i v?n c&ograve;n u?t. T&ocirc;i v?n xu?t th&acirc;n Nam b? n&ecirc;n  v?i c&aacute;c h&igrave;nh ?nh s&ocirc;ng nu?c, chi?c ghe, c&aacute;nh d?ng..., t&ocirc;i c&oacute; th? c?m nh?n  du?c m?t c&aacute;ch s&acirc;u s?c. Phim l?t t? du?c m?t d?i s?ng r?t ch&acirc;n th?t c?a  ngu?i d&acirc;n qu&ecirc; mi?n Nam v?i r?t nhi?u c?nh quay d?p. C?nh phim cu?i c&ugrave;ng  v?i h&igrave;nh ?nh Nuong di tr&ecirc;n c&aacute;nh d?ng b&aacute;t ng&aacute;t khi?n m?t t&ocirc;i nh&ograve;e v&igrave; qu&aacute;  x&uacute;c d?ng.</p>
+<p class="Normal">T&ocirc;i th&iacute;ch nh&acirc;n v?t Nuong nh?t. Lan Ng?c l?n d?u ti&ecirc;n  d&oacute;ng phim m&agrave; to&aacute;t l&ecirc;n v? d?p c?a g&aacute;i mi?n Nam, r?t m?c m?c, kh&ocirc;ng c?u  k?, kh&ocirc;ng c? g?ng di?n xu?t khi nh?p vai. C&oacute; th? th?y r?ng d&acirc;y l&agrave; m?t  kh?i d?u qu&aacute; t?t cho c&ocirc; ?y khi bu?c ch&acirc;n v&agrave;o di?n ?nh.</p>
+<p class="Normal">Tru?c khi phim ra m?t, nhi?u ngu?i cung b&agrave;n t&aacute;n v? c&aacute;c  c?nh n&oacute;ng, b?o l?c trong phim. Nhung theo t&ocirc;i c?m nh?n, th?t ra, c?nh  nh?y c?m trong phim c&ograve;n hoi &iacute;t. Ð&ocirc;i khi hi?n th?c cu?c s?ng c&ograve;n kh?c  li?t hon nhi?u. N?u phim t&ocirc; d?m hon ch&uacute;t n?a ch?t hi?n th?c n&agrave;y th&igrave; c?m  x&uacute;c khi xem phim s? c&ograve;n du?c d?y l&ecirc;n cao.</p>
+<table border="0" cellspacing="0" cellpadding="3" width="1" align="center">
+<tbody>
+<tr>
+<td><img src="http://vnexpress.net/Files/Subject/3B/A2/1F/F4/IMG_6235.jpg" border="1" alt="Ng&ocirc; Thanh V&acirc;n (gi?a) di xem phim c&ugrave;ng di?n vi&ecirc;n Johnny Tr&iacute; Nguy?n (ph?i)." width="485" height="365" /></td>
+</tr>
+<tr>
+<td class="Image">Ng&ocirc; Thanh V&acirc;n (gi?a) di xem phim c&ugrave;ng di?n vi&ecirc;n Johnny Tr&iacute; Nguy?n (ph?i).</td>
+</tr>
+</tbody>
+</table>
+<p class="Normal"><span style="color: #3f3f3f;"><strong>Di?n vi&ecirc;n Tr?n B?o Son: T&ocirc;i c?m nh?n s&acirc;u s?c v? th&acirc;n ph?n con ngu?i</strong></span></p>
+<p class="Normal">B? phim d&atilde; ch?m du?c v&agrave;o s? x&uacute;c d?ng c?a ngu?i xem.  T&ocirc;i v?n sinh ra ? S&agrave;i G&ograve;n, sau d&oacute; d?nh cu ? M? m?t th?i gian d&agrave;i, nhung  xem phim, t&ocirc;i v?n c?m nh?n du?c r&otilde; r&agrave;ng v? s? m?c m?c, ch&acirc;n qu&ecirc; c?a  ngu?i mi?n T&acirc;y, v? cu?c s?ng tr&ocirc;i d?t mi?n s&ocirc;ng nu?c v&agrave; nh?ng ho&agrave;n c?nh,  th&acirc;n ph?n vuon l&ecirc;n t? ngh?ch c?nh, d&oacute;i ngh&egrave;o.</p>
+<p class="Normal">T&ocirc;i th&iacute;ch c&aacute;ch di?n c?a Lan Ng?c. Khi kh&oacute;c tr&ecirc;n m&agrave;n  ?nh, c&ocirc; ?y kh&ocirc;ng v?t v&atilde; kh&ocirc;ng g&agrave;o th&eacute;t, nhung nu?c m?t t? nhi&ecirc;n tr&agrave;o ra  nhu t? ch&iacute;nh tr&aacute;i tim c&ocirc; ?y, l?ng l? v&agrave; &aacute;m ?nh.</p>
+<table border="0" cellspacing="0" cellpadding="3" width="1" align="center">
+<tbody>
+<tr>
+<td><img src="http://vnexpress.net/Files/Subject/3B/A2/1F/F4/IMG_6278.jpg" border="1" alt="Di?n vi&ecirc;n Tr?n B?o Son th&iacute;ch &#39;C&aacute;nh d?ng b?t t?n&#39;." width="400" height="660" /></td>
+</tr>
+<tr>
+<td class="Image">Di?n vi&ecirc;n Tr?n B?o Son (ph?i) th&iacute;ch "C&aacute;nh d?ng b?t t?n".</td>
+</tr>
+</tbody>
+</table>
+<p class="Normal"><span style="color: #3f3f3f;"><strong>Ð?o di?n Vu Ng?c Ð&atilde;ng: Qu&aacute; th?a m&atilde;n v?i b? phim</strong></span></p>
+<p class="Normal">Ð&acirc;y l&agrave; l?n th? hai t&ocirc;i xem phim. L?n d?u khi <a class="Normal" href="http://vnexpress.net/GL/Van-hoa/2010/10/3BA21E2A/">xem ? H&agrave; N?i</a>,  t&ocirc;i kh&oacute;c hon 5 l?n. Nhung n?u nhu ? l?n tru?c, t&ocirc;i xem phim trong t&acirc;m  tr?ng h&aacute;o h?c v&agrave; mu?n "soi" phim th?t k? th&igrave; l?n th? hai di xem, t&ocirc;i  th?y phim c&ograve;n hay hon, v&agrave; th?t s? l&agrave; x&uacute;c d?ng hon.</p>
+<p class="Normal">Ði?m t&ocirc;i c?c th&iacute;ch ? b? phim l&agrave; ch?t di?n ?nh r&otilde; n&eacute;t  c?a n&oacute;. Ð&acirc;y l&agrave; phim di?n ?nh nh?t trong c&aacute;c phim g?n d&acirc;y t&ocirc;i du?c xem ?  Vi?t Nam.</p>
+<p class="Normal">Tru?c d&acirc;y, t&ocirc;i d&atilde; d?c v&agrave; r?t th&iacute;ch truy?n c?a Nguy?n  Ng?c Tu. Ði?u t&ocirc;i lo s? nh?t khi di xem phim l&agrave; g?p c?nh m?t b? phim  minh h?a l?i c&acirc;u chuy?n d&oacute;, nhung m?ng l&agrave; phim d&atilde; d?ng du?c d?c l?p ch?  kh&ocirc;ng nhu th?.</p>
+<p class="Normal">Khi anh Nguy?n Phan Quang B&igrave;nh ch?n H?i Y?n v&agrave;o vai c&ocirc;  g&aacute;i di?m, t&ocirc;i lo ch?t con g&aacute;i B?c c&oacute; th? ph&aacute; h?ng kh&ocirc;ng kh&iacute; d?c trung  Nam b? c?a n?i dung phim. Kh&ocirc;ng ng? ch?t B?c c?a H?i Y?n t? dung l&agrave;m cho  c&acirc;u chuy?n tuoi m?i v&agrave; th&uacute; v? hon.</p>
+<p class="Normal">Nh?c trong phim n&agrave;y cung qu&aacute; hay. Anh Nguy?n Qu?c  Trung v&agrave; d&agrave;n nh?c giao hu?ng d&atilde; mang d?n m?t ch?t nh?c ho&agrave;nh tr&aacute;ng, sang  tr?ng, r?t Vi?t Nam, d?m ch?t bu?n da di?t xo&aacute;y v&agrave;o l&ograve;ng ngu?i xem.</p>', CAST(0x00009E1A0124551C AS DateTime), 1, N'http://vnexpress.net/Files/Subject/3B/A2/1F/F4/IMG_6235.jpg', N'Vu Ng?c Ðãng d?m nu?c m?t trong t?ng c?nh phim. Ngô Thanh Vân ra kh?i r?p v?n còn khóc... H? thu?ng th?c b? phim chuy?n th? t? tác ph?m van h?c n?i ti?ng t?i 22/10, t?i TP HCM.')
+INSERT [dbo].[mc_news] ([nid], [title], [content], [date_added], [submiter], [image], [description]) VALUES (4, N'New Zealanders rally behind Hobbit shoot', N'<p>The demonstrators hoped to reassure Hollywood studio executives as  they decide whether the Lord of the Rings prequels should be shot in the  country.</p>
+<p>Last month, acting unions threatened to boycott the films in a row over wages.</p>
+<p>Though that threat has now been lifted, Warner Bros said the unions&#39; actions had caused "substantial damage".</p>
+<div class="story-feature related narrow"><a class="hidden" href="http://www.bbc.co.uk/news/entertainment-arts-11617860#story_continues_1">Continue reading the main story</a>
+<h2>Related stories</h2>
+<ul class="related-links-list">
+<li><a href="http://www.bbc.co.uk/news/entertainment-arts-11560411">Hobbit to begin filming next year</a></li>
+<li><a href="http://www.bbc.co.uk/news/entertainment-arts-11417340">Jackson threatens Hobbit shutdown</a></li>
+</ul>
+</div>
+<p id="story_continues_1">Their actions, a studio statement issued  last week continued, had "forced us to consider other filming locations  for the first time."</p>
+<p>According to organisers, the nationwide action was timed to  coincide with the arrival of Warner Bros executives for meetings to  determine the movies&#39; fate.</p>
+<p>The three Lord of the Rings movies, which were all filmed in New Zealand, earned billions of dollars at the box office.</p>
+<p>Auckland, Wellington and Christchurch were among the New Zealand cities to host rallies on Monday.</p>
+<div class="caption"><img src="http://news.bbcimg.co.uk/media/images/49639000/jpg/_49639843_hobbit2_bodygetty.jpg" alt="Richard Taylor" width="224" height="224" /> <span style="width: 224px;">Oscar-winner Richard Taylor was among the speakers in Wellington</span></div>
+<p>Richard Taylor, the Oscar-winning technician behind many of the  Lord of the Rings trilogy&#39;s special effects, told protestors in  Wellington he hoped The Hobbit would stay in New Zealand.</p>
+<p>"The alternative is just too bleak to consider," he said.</p>
+<p>Taylor also read a letter from Peter Jackson thanking people for their support.</p>
+<p>"This is where Middle Earth was born and this is where it should stay," he continued.</p>
+<p>The New Zealand government has pledged to step in to try to  keep the production in the homeland of its recently confirmed director.</p>
+<p>Prime Minister John Key will lead a delegation scheduled to meet Warner Bros executives on Tuesday.</p>
+<p>"The threat of industrial actions... have substantially  undermined the confidence that Warner Bros has in New Zealand," Mr Key  said last week.</p>
+<p>Filming on the two-part prequel is set to begin in February  after it was finally given the go-ahead. British actor Martin Freeman  was confirmed in the lead role of Bilbo Baggins.</p>', CAST(0x00009E1A01249C98 AS DateTime), 1, N'http://news.bbcimg.co.uk/media/images/49638000/jpg/_49638442_jex_847035_de27-1.jpg', N'Thousands of New Zealanders have taken to their streets to protest against possible plans to move production of Peter Jackson&#39;s Hobbit films elsewhere.')
+INSERT [dbo].[mc_news] ([nid], [title], [content], [date_added], [submiter], [image], [description]) VALUES (5, N'Paranormal Activity sequel tops US box office chart', N'<p>Set prior to the events of the first film, it tells of an American family living in a haunted house.</p>
+<p>The Paramount release knocked last week&#39;s chart-topper, stunt-based comedy Jackass 3D, down to second place.</p>
+<p>Early figures suggest the film made &pound;6m in UK cinemas over the weekend.</p>
+<p>Paranormal Activity 2&#39;s success surprised even its makers, who had been expecting it to make around $30m in its opening weekend.</p>
+<div class="story-feature wide "><a class="hidden" href="http://www.bbc.co.uk/news/entertainment-arts-11617859#story_continues_1">Continue reading the main story</a>
+<h2>North American box office</h2>
+<ul>
+<li> 1. Paranormal Activity 2 - $41.5m</li>
+<li> 2. Jackass 3D - $21.6m</li>
+<li> 3. Red - $15m</li>
+<li> 4. Hereafter - $12m</li>
+<li> 5. The Social Network - $7.3m</li>
+</ul>
+<p>Source: Hollywood.com</p>
+</div>
+<p id="story_continues_1">Its low-budget predecessor became a word of mouth phenomenon last year, eventually making more than $100m in North America.</p>
+<p>Little information was disclosed about the sequel ahead of  release, according to its studio&#39;s executive vice president for  distribution.</p>
+<p>"We tried to treat it a lot like the first one was treated from a publicity and marketing standpoint," said Don Harris.</p>
+<p>Action comedy Red fell down to three in this week&#39;s  countdown, with Clint Eastwood&#39;s supernatural drama Hereafter making its  chart debut at four.</p>
+<p>Starring Matt Damon as a reluctant psychic, the film made  $12m (&pound;7.6m) on general release after previously playing in selected  cities.</p>
+<p>"We&#39;re in the marathon business, not the sprint," said Dan Fellman, president of domestic distribution at Warner Bros.</p>
+<p>"I always tell Clint. &#39;Let&#39;s not talk about the first weekend. Let&#39;s talk about the third."</p>', CAST(0x00009E1A0124D154 AS DateTime), 1, N'http://news.bbcimg.co.uk/media/images/49639000/jpg/_49639834_paranormal1_bodygetty.jpg', N'Moviegoers in the US and Canada have flocked to the sequel to 2009 horror hit Paranormal Activity, which scared up takings of $41.5m (£26.3m) during its first three days on release.')
+INSERT [dbo].[mc_news] ([nid], [title], [content], [date_added], [submiter], [image], [description]) VALUES (6, N'&#39;Soft power&#39; raises Taiwan&#39;s profile', N'<p>In the past year, even as relations with China have improved,  Taiwan&#39;s government has been stepping up efforts to raise the island&#39;s  profile.</p>
+<p>It is part of a strategy promoted by President Ma Ying-jeou,  who says Taipei must increase its so-called "soft power" if it is to  stand on the international stage.</p>
+<p>The strategy is wide-ranging. It includes developing globally  famous brands, boosting Taiwan&#39;s presence not only in the high-tech  sector but also in arts, food and fashion, and marketing great things  about Taiwan.</p>
+<p>As a result, the government has poured millions of dollars  into supporting performance troupes, filmmakers and even pop singers.</p>
+<p>Some of them have enjoyed regional or international acclaim,  including a government-funded film that won an award at the Berlin  International Film Festival this year. There are plans to spend $200m  (&pound;128m) to help the movie industry.</p>
+<p>Money has also been allotted for promoting tourism, and not just to boost economic growth.</p>
+<p>Previously content with being just a manufacturer of the  world&#39;s high-tech products, Taiwan now wants to be a place where  everybody wants to visit and get to know.</p>
+<p><span class="cross-head">Taiwan Academies</span></p>
+<p>Not promoting itself in the past partly explains why it only  gets about four million visitors a year - much less than the smaller  Singapore.</p>
+<div class="caption body-narrow-width"><img src="http://news.bbcimg.co.uk/media/images/49620000/jpg/_49620814_010385536-1.jpg" alt="Taiwan President Ma Ying-jeou (L) and his wife Christine Chow Mei-ching during National Day celebrations in Taipei on 10 October 2010" width="304" height="171" /> <span style="width: 304px;">The president and his wife are spearheading efforts to raise Taiwan&#39;s profile </span></div>
+<p>So in the past year, Taipei has touted Taiwan&#39;s tourism wonders  on advertisements on London buses, the BBC and CNN, and high-profile  places such as New York&#39;s Time Square.</p>
+<p>The government also promotes Taiwan abroad through cultural festivals and culinary events, including in Britain and Canada.</p>
+<p>The state-funded wire service, the Central News Agency,  meanwhile, has been revamped. It now offers its stories written in  English about Taiwan on Google and - for the first time - English video  news about the island.</p>
+<p>At the same time, Taiwan&#39;s government continues to provide generous humanitarian assistance to countries struck by disasters.</p>
+<p>It has also sent First Lady Chow Mei-ching on more official  visits overseas than most Taiwanese first ladies go on - including to  Germany, Italy and Haiti, where she promotes Taiwan&#39;s performance  troupes, reads stories to children, and hugs disaster victims.</p>
+<div class="story-feature narrow"><a class="hidden" href="http://www.bbc.co.uk/news/world-asia-pacific-11609099#story_continues_1">Continue reading the main story</a>
+<h2 class="quote">&ldquo;<span>Start Quote</span></h2>
+<blockquote>
+<p class="first-child">People around the world would care if they know more about Taiwan and if they think Taiwan is different from China&rdquo;</p>
+</blockquote>
+<span class="endquote">End Quote</span> <span class="quote-credit">Kou Chien-wen</span> <span class="quote-credit-title">National Chengchi University in Taipei</span></div>
+<p id="story_continues_1">And later this year, Taiwan will  open Taiwan Academies - similar to the British Council - to promote  Taiwanese culture and the learning of Chinese language abroad. These  schools will be opened partly in response to the hundreds of Confucius  Institutes China established overseas in recent years.</p>
+<p>"It&#39;s soft power. Taiwan no longer depends on diplomacy or  the military to boost its power. We want to do more to contribute to the  world. We&#39;ll use our resources to promote Taiwan," says former  presidential office spokesman Wang Yu-chih.</p>
+<p><span class="cross-head">&#39;Different from China&#39;</span></p>
+<p>Analysts believe these efforts are partly aimed at  distinguishing Taiwan from China and ensuring the world does not forget  the democratic and self-ruled Taiwan&#39;s cause - to be recognised as a  country and included in international decision-making bodies.</p>
+<p>"Like European countries, which are not militarily strong,  this sort of thing raises their image," says Kou Chien-wen, a political  science professor specialising in Taiwan-China relations at National  Chengchi University in Taipei.</p>
+<p>"Take Norway for example, it has the Nobel peace prize; when  we think of it, we think well of it. Finland has Nokia, which also helps  that country&#39;s image."</p>
+<div class="caption body-narrow-width"><img src="http://news.bbcimg.co.uk/media/images/49622000/jpg/_49622301_010183237-2.jpg" alt="Golfer Yani Tseng,  pictured on 14 September 2010" width="304" height="171" /> <span style="width: 304px;">High-profile figures like Yani Tseng have also helped raise Taiwan&#39;s profile</span></div>
+<p>It is feared that not having a noticeable presence in the  international community could hurt the island of 23 million people if  there is conflict with its giant neighbour China - which considers  Taiwan part of its territory which should be eventually reunited.</p>
+<p>"Taiwan will be considered politically unimportant,  economically unimportant, and culturally unimportant. That&#39;s a crisis  for Taiwan," says Mr Kou.</p>
+<p>"A not so well-known country invaded by a bigger country...  People around the world would care if they know more about Taiwan and if  they think Taiwan is different from China."</p>
+<p><span class="cross-head">Rightful status&#39;</span></p>
+<p>Besides the government, Taiwanese people also have a strong desire for Taiwan to be recognised.</p>
+<p>Many are irked when people assume they are from China or when maps lump Taiwan as a part of China.</p>
+<p>Taiwanese citizens who succeed on the international stage often take the chance to promote Taiwan.</p>
+<div class="story-feature wide "><a class="hidden" href="http://www.bbc.co.uk/news/world-asia-pacific-11609099#story_continues_2">Continue reading the main story</a>
+<h2>CHINA-TAIWAN RELATIONS</h2>
+<ul>
+<li> Ruled separately since end of Chinese civil war in 1949 </li>
+<li> China considers the island part of its territory</li>
+<li> China has offered a "one country, two systems" solution, like Hong Kong</li>
+<li> Most in Taiwan support status quo</li>
+<li> Relations between Beijing and Taipei have been improving in  recent years since pro-Beijing President Ma Ying-jeou took power in  Taiwan</li>
+</ul>
+</div>
+<p id="story_continues_2">Athletes, for instance, drape  Taiwan&#39;s national flag over themselves in awards ceremonies, even though  that flag is not used in the Olympics or other gatherings of nations,  due to China&#39;s objections.</p>
+<p>Government efforts aside, individual Taiwanese people have in some ways done more to gain fame for the island this year.</p>
+<p>They include golfer Yani Tseng, who shot to fame after  becoming the youngest player in LPGA history to win three major  championships; Lin Yu-chun, an amateur singer who received millions of  views on YouTube; and Chen Shu-chu, a vegetable seller named one of Time  Magazine&#39;s 100 most influential people for her philanthropy.</p>
+<p>Mr Ma has seized the opportunity to praise them for boosting Taiwan&#39;s image.</p>
+<p>Even when people who had left Taiwan years ago become famous -  such as American fashion designer Jason Wu of Michelle  Obama-inauguration dress fame - the president misses no opportunity to  highlight their Taiwan connections.</p>
+<p>He gave Mr Wu star treatment on his recent visit here, meeting him at the presidential office and lavishing praise on him.</p>
+<p>The effects of Taiwan&#39;s efforts to boost its profile may be too early to tell.</p>
+<p>For many Taiwanese people, success will depend on whether  Taiwan is included in international organisations. Attempts to join them  in the past had been blocked by China.</p>
+<p>After Taiwan began improving ties with Beijing in 2008, it  was allowed to participate in the World Health Assembly - the  decision-making body of the World Health Organization, as an observer.</p>
+<p>But it is still excluded from other international  organisations, such as the International Civil Aviation Organization  (ICAO) - which deals with flight safety - and the United Nations  Framework Convention on Climate Change (UNFCCC).</p>
+<p>Ultimately, many Taiwanese people want Taiwan to be given  what they see as its rightful status and long overdue inclusion in  global affairs.</p>
+<p>"We are a country; why can&#39;t we be recognised as such?" asked  elementary school principal Chen Shu-chuan, reflecting the views of  many Taiwanese people.</p>', CAST(0x00009E1A0125DEDC AS DateTime), 1, N'http://news.bbcimg.co.uk/media/images/49620000/jpg/_49620811_010417976-1.jpg', N'Often mistaken for being under China&#39;s sovereignty and sometimes even for being Thailand, Taiwan is pushing hard to stake out a more distinct international image.')
+SET IDENTITY_INSERT [dbo].[mc_news] OFF
+/****** Object:  Table [dbo].[mc_users]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_users](
+	[uid] [int] IDENTITY(1,1) NOT NULL,
+	[username] [nvarchar](32) NOT NULL,
+	[password] [nvarchar](32) NOT NULL,
+	[fullname] [nvarchar](32) NULL,
+	[address] [nvarchar](64) NULL,
+	[phone] [nvarchar](20) NULL,
+	[mobile] [nvarchar](20) NULL,
+	[email] [nvarchar](32) NULL,
+	[sex] [tinyint] NULL,
+	[date_joined] [datetime] NULL,
+	[question] [nvarchar](200) NULL,
+	[answer] [nvarchar](100) NULL,
+	[allow_acp] [tinyint] NULL,
+ CONSTRAINT [PK_mc_users] PRIMARY KEY CLUSTERED 
+(
+	[uid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Full search for username' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'mc_users', @level2type=N'CONSTRAINT',@level2name=N'PK_mc_users'
+GO
+SET IDENTITY_INSERT [dbo].[mc_users] ON
+INSERT [dbo].[mc_users] ([uid], [username], [password], [fullname], [address], [phone], [mobile], [email], [sex], [date_joined], [question], [answer], [allow_acp]) VALUES (1, N'admin                           ', N'123456                          ', N'Account Test                    ', N'                                                                ', N'                    ', N'                    ', N'billythekidsde@gmail.com        ', 1, NULL, N'What was your childhood nickname?                                                                                                                                                                       ', N'i dont know                                                                                         ', 1)
+INSERT [dbo].[mc_users] ([uid], [username], [password], [fullname], [address], [phone], [mobile], [email], [sex], [date_joined], [question], [answer], [allow_acp]) VALUES (6, N'test                            ', N'asdf                            ', N'Hello World                     ', N'                                                                ', N'                    ', N'                    ', N'test@moclip.com                 ', 1, CAST(0x00009E0E00DBF654 AS DateTime), N'In what city or town did your mother and father meet?                                                                                                                                                   ', N'i dont know                                                                                         ', 0)
+SET IDENTITY_INSERT [dbo].[mc_users] OFF
+/****** Object:  Table [dbo].[mc_suggestion]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_suggestion](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NOT NULL,
+	[date_added] [datetime] NOT NULL,
+	[title] [nvarchar](200) NOT NULL,
+	[content] [ntext] NOT NULL,
+ CONSTRAINT [PK_mc_suggestion] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[mc_clips]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_clips](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[title] [nvarchar](200) NOT NULL,
+	[description] [nvarchar](max) NULL,
+	[chanel_id] [int] NOT NULL,
+	[path] [nvarchar](200) NOT NULL,
+	[submiter] [int] NOT NULL,
+	[date_added] [datetime] NOT NULL,
+	[last_modified] [datetime] NOT NULL,
+	[image] [nvarchar](200) NULL,
+	[hits] [bigint] NULL,
+	[private] [tinyint] NULL,
+	[approve] [tinyint] NOT NULL,
+ CONSTRAINT [PK_mc_clips] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Full search for title' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'mc_clips', @level2type=N'CONSTRAINT',@level2name=N'PK_mc_clips'
+GO
+SET IDENTITY_INSERT [dbo].[mc_clips] ON
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (3, N'Demo Clip', N'The Copyright Tips page and the Community Guidelines can help you determine whether your video infringes someone else&#39;s copyright By clicking &quot;Share Clip&quot;, you are representing that this video does not violate Our&#39;s Terms of Use and that you own all copyrights in this video or have authorization to upload i', 4, N'videoplayback.flv', 6, CAST(0x00009E0E00000000 AS DateTime), CAST(0x00009E0E00000000 AS DateTime), N'1286997696Koala.jpg', 339, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (111, N'Unchained Melody', N'Baby sorry i love you', 2, N'1287173964Gareth-Gates---unchained-melody.flv', 1, CAST(0x00009E1000000000 AS DateTime), CAST(0x00009E1000000000 AS DateTime), N'1287173964Lighthouse.jpg', 5, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (112, N'Nobody', N'Performance by Wonder Girls', 6, N'1287328110YouTube - Wonder Girls NOBODY US Debut Single HD MV.flv', 1, CAST(0x00009E1200000000 AS DateTime), CAST(0x00009E1200000000 AS DateTime), N'1287328110Wonder_Girls_23072009075741.jpg', 17, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (113, N'Funny Football', N'Funny Football', 5, N'1287354253YouTube - Funny Football.flv', 1, CAST(0x00009E1200000000 AS DateTime), CAST(0x00009E1200000000 AS DateTime), N'1287354253Funny_wallpapers_Fight_for_a_ball___Football_009196_.jpg', 4, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (121, N'Stairway to Heaven', N'Stairway to Heaven', 6, N'1287411533YouTube - stairway to heaven ( from this moment).flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'1287411533Stairway_To_Heaven_100026.jpg', 2, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (122, N'Because I love You', N'Because I love You', 2, N'1287411692YouTube-Because I Love You-.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'12874116921230525249150_2.jpg', 7, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (123, N'Sand Art', N'Sand Art', 1, N'1287411769YouTube - Sand art.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'1287411769sand-art.jpg', 3, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (124, N'Because I am A Girl', N'Kiss', 6, N'1287411894YouTube - Because I am A Girl -- Kiss.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'1287411894hqdefault.jpg', 6, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (125, N'Trouble is a friend', N'Trouble is a friend - Lenka', 6, N'1287411988videoplayback.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'1287411988Lenka-N2-syd1266997919.jpg', 1, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (126, N'Full House', N'Full House', 6, N'1287412070YouTube - OST Full House.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'128741207065011744486276233704.jpg', 1, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (127, N'A Moment to Remember', N'A Moment to Remember', 2, N'1287412126YouTube - MV - A Moment to Remember(korean movie).flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'1287412126a_moment_to_remember1.jpg', 2, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (128, N'Never say odbye', N'My Girl OST- Never Say odbye', 6, N'1287412275YouTube - My Girl OST- Never Say odbye.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'12874122750054653754.jpg', 2, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (129, N' Nuri Sahin vs. Lukas Podolsk', N' Nuri Sahin vs. Lukas Podolsk', 3, N'1287412444YouTube - Nuri Sahin vs. Lukas Podolski.flv', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'1287412444Lukas-Podolski-wallpaper-24-1024x768.jpg', 0, 0, 1)
+INSERT [dbo].[mc_clips] ([id], [title], [description], [chanel_id], [path], [submiter], [date_added], [last_modified], [image], [hits], [private], [approve]) VALUES (130, N'Next Plane Home', N'Next Plane Home', 6, N'1287412953Next Plane Home.mp4', 1, CAST(0x00009E1300000000 AS DateTime), CAST(0x00009E1300000000 AS DateTime), N'12874129532881079179_904bd33133.jpg', 1, 0, 1)
+SET IDENTITY_INSERT [dbo].[mc_clips] OFF
+/****** Object:  Table [dbo].[mc_comments]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_comments](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[clip_id] [int] NULL,
+	[user_id] [int] NULL,
+	[title] [nvarchar](100) NULL,
+	[comment] [ntext] NULL,
+	[approve] [tinyint] NOT NULL,
+	[date_added] [datetime] NULL,
+ CONSTRAINT [PK_mc_comments] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[mc_comments] ON
+INSERT [dbo].[mc_comments] ([id], [clip_id], [user_id], [title], [comment], [approve], [date_added]) VALUES (13, 3, 6, N'hello                                                                                               ', N'im very tired now', 1, CAST(0x00009E110122F276 AS DateTime))
+INSERT [dbo].[mc_comments] ([id], [clip_id], [user_id], [title], [comment], [approve], [date_added]) VALUES (19, 112, 1, N'aaaaaaaaa                                                                                           ', N'hay qua di', 1, CAST(0x00009E1200FA7CA7 AS DateTime))
+SET IDENTITY_INSERT [dbo].[mc_comments] OFF
+/****** Object:  Table [dbo].[mc_clip_rate]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_clip_rate](
+	[clip_id] [int] NOT NULL,
+	[user_id] [int] NOT NULL,
+	[rate] [int] NOT NULL,
+ CONSTRAINT [PK_mc_clip_rate] PRIMARY KEY CLUSTERED 
+(
+	[clip_id] ASC,
+	[user_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[mc_clip_rate] ([clip_id], [user_id], [rate]) VALUES (3, 1, 2)
+INSERT [dbo].[mc_clip_rate] ([clip_id], [user_id], [rate]) VALUES (3, 6, 5)
+INSERT [dbo].[mc_clip_rate] ([clip_id], [user_id], [rate]) VALUES (112, 1, 1)
+/****** Object:  Table [dbo].[mc_report]    Script Date: 10/25/2010 17:55:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[mc_report](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[clip_id] [int] NOT NULL,
+	[user_id] [int] NOT NULL,
+	[comment] [nvarchar](500) NULL,
+	[report_date] [date] NOT NULL,
+ CONSTRAINT [PK_mc_report] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC,
+	[clip_id] ASC,
+	[user_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  StoredProcedure [dbo].[updateChannel]    Script Date: 10/25/2010 17:55:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[updateChannel]
+	@cid int
+AS
+BEGIN
+	update mc_channel set total_clips = (select COUNT(id) from mc_clips where chanel_id=@cid and approve=1) where cid=@cid
+END
+GO
+/****** Object:  StoredProcedure [dbo].[removeClips]    Script Date: 10/25/2010 17:55:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[removeClips]
+	-- Add the parameters for the stored procedure here
+	@ids int	
+AS
+select path, image from mc_clips where id = @ids
+BEGIN	
+	delete from mc_report where clip_id = @ids;
+	delete from mc_comments where clip_id = @ids;
+	delete from mc_clip_rate where clip_id = @ids;	
+	delete from mc_clips where id = @ids;		
+END
+GO
+/****** Object:  StoredProcedure [dbo].[removeChannel]    Script Date: 10/25/2010 17:55:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[removeChannel]
+	@cid int
+AS
+select path, image from mc_clips where chanel_id= @cid
+BEGIN
+	delete from mc_report where clip_id in (select id from mc_clips where chanel_id = @cid);
+	delete from mc_comments where clip_id in (select id from mc_clips where chanel_id = @cid);
+	delete from mc_clip_rate where clip_id in (select id from mc_clips where chanel_id = @cid);
+	delete from mc_clips where chanel_id=@cid;	
+	delete from mc_channel where cid = @cid;
+END
+GO
+/****** Object:  Default [DF_mc_chanel_total_clips]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_channel] ADD  CONSTRAINT [DF_mc_chanel_total_clips]  DEFAULT ((0)) FOR [total_clips]
+GO
+/****** Object:  Default [DF_mc_clip_rate_rate]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clip_rate] ADD  CONSTRAINT [DF_mc_clip_rate_rate]  DEFAULT ((0)) FOR [rate]
+GO
+/****** Object:  Default [DF_mc_clips_date_added]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clips] ADD  CONSTRAINT [DF_mc_clips_date_added]  DEFAULT (getdate()) FOR [date_added]
+GO
+/****** Object:  Default [DF_mc_clips_last_modified]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clips] ADD  CONSTRAINT [DF_mc_clips_last_modified]  DEFAULT (getdate()) FOR [last_modified]
+GO
+/****** Object:  Default [DF_mc_clips_hits]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clips] ADD  CONSTRAINT [DF_mc_clips_hits]  DEFAULT ((0)) FOR [hits]
+GO
+/****** Object:  Default [DF_mc_clips_private]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clips] ADD  CONSTRAINT [DF_mc_clips_private]  DEFAULT ((0)) FOR [private]
+GO
+/****** Object:  Default [DF_mc_clips_approve]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clips] ADD  CONSTRAINT [DF_mc_clips_approve]  DEFAULT ((0)) FOR [approve]
+GO
+/****** Object:  Default [DF_mc_comments_approve]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_comments] ADD  CONSTRAINT [DF_mc_comments_approve]  DEFAULT ((0)) FOR [approve]
+GO
+/****** Object:  Default [DF_mc_comments_date_added]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_comments] ADD  CONSTRAINT [DF_mc_comments_date_added]  DEFAULT (getdate()) FOR [date_added]
+GO
+/****** Object:  Default [DF_mc_report_report_date]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_report] ADD  CONSTRAINT [DF_mc_report_report_date]  DEFAULT (getdate()) FOR [report_date]
+GO
+/****** Object:  Default [DF_mc_users_date_joined]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_users] ADD  CONSTRAINT [DF_mc_users_date_joined]  DEFAULT (getdate()) FOR [date_joined]
+GO
+/****** Object:  Default [DF_mc_users_allow_acp]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_users] ADD  CONSTRAINT [DF_mc_users_allow_acp]  DEFAULT ((0)) FOR [allow_acp]
+GO
+/****** Object:  ForeignKey [FK_mc_clip_rate_mc_clips]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clip_rate]  WITH CHECK ADD  CONSTRAINT [FK_mc_clip_rate_mc_clips] FOREIGN KEY([clip_id])
+REFERENCES [dbo].[mc_clips] ([id])
+GO
+ALTER TABLE [dbo].[mc_clip_rate] CHECK CONSTRAINT [FK_mc_clip_rate_mc_clips]
+GO
+/****** Object:  ForeignKey [FK_mc_clip_rate_mc_users]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clip_rate]  WITH CHECK ADD  CONSTRAINT [FK_mc_clip_rate_mc_users] FOREIGN KEY([user_id])
+REFERENCES [dbo].[mc_users] ([uid])
+GO
+ALTER TABLE [dbo].[mc_clip_rate] CHECK CONSTRAINT [FK_mc_clip_rate_mc_users]
+GO
+/****** Object:  ForeignKey [FK_mc_clips_mc_chanel]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_clips]  WITH CHECK ADD  CONSTRAINT [FK_mc_clips_mc_chanel] FOREIGN KEY([chanel_id])
+REFERENCES [dbo].[mc_channel] ([cid])
+GO
+ALTER TABLE [dbo].[mc_clips] CHECK CONSTRAINT [FK_mc_clips_mc_chanel]
+GO
+/****** Object:  ForeignKey [FK_mc_comments_mc_clips]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_comments]  WITH CHECK ADD  CONSTRAINT [FK_mc_comments_mc_clips] FOREIGN KEY([clip_id])
+REFERENCES [dbo].[mc_clips] ([id])
+GO
+ALTER TABLE [dbo].[mc_comments] CHECK CONSTRAINT [FK_mc_comments_mc_clips]
+GO
+/****** Object:  ForeignKey [FK_mc_comments_mc_users]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_comments]  WITH CHECK ADD  CONSTRAINT [FK_mc_comments_mc_users] FOREIGN KEY([user_id])
+REFERENCES [dbo].[mc_users] ([uid])
+GO
+ALTER TABLE [dbo].[mc_comments] CHECK CONSTRAINT [FK_mc_comments_mc_users]
+GO
+/****** Object:  ForeignKey [FK_mc_report_mc_clips]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_report]  WITH CHECK ADD  CONSTRAINT [FK_mc_report_mc_clips] FOREIGN KEY([clip_id])
+REFERENCES [dbo].[mc_clips] ([id])
+GO
+ALTER TABLE [dbo].[mc_report] CHECK CONSTRAINT [FK_mc_report_mc_clips]
+GO
+/****** Object:  ForeignKey [FK_mc_report_mc_users]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_report]  WITH CHECK ADD  CONSTRAINT [FK_mc_report_mc_users] FOREIGN KEY([user_id])
+REFERENCES [dbo].[mc_users] ([uid])
+GO
+ALTER TABLE [dbo].[mc_report] CHECK CONSTRAINT [FK_mc_report_mc_users]
+GO
+/****** Object:  ForeignKey [FK_mc_suggestion_mc_users]    Script Date: 10/25/2010 17:55:28 ******/
+ALTER TABLE [dbo].[mc_suggestion]  WITH CHECK ADD  CONSTRAINT [FK_mc_suggestion_mc_users] FOREIGN KEY([user_id])
+REFERENCES [dbo].[mc_users] ([uid])
+GO
+ALTER TABLE [dbo].[mc_suggestion] CHECK CONSTRAINT [FK_mc_suggestion_mc_users]
+GO

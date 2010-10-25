@@ -74,6 +74,12 @@ else if(action == "contact")
 <!--#include file="module/contact.asp" -->
 <%
 }
+else if(action == "news") 
+{
+%>
+<!--#include file="module/news.asp" -->
+<%
+}
 else if(action == "forgetpass") 
 {
 %>

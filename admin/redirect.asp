@@ -34,6 +34,10 @@ txt[22] = "Clip has been denied Successfully!";
 txt[23] = "Clip has been updated Successfully!";
 txt[25] = "Clip has been resolved!";
 
+//News
+txt[30] = "News has been added!";
+txt[31] = "News has been deleted!";
+
 if(isset(txt[Request.QueryString("id")]))
 {
 	msg = txt[Request.QueryString("id")];
