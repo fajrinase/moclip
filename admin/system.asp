@@ -14,6 +14,7 @@
                 <li><a href="clip.asp">Clips</a></li>
                 <li><a href="channel.asp">Channel</a></li>
                 <li><a href="comment.asp">Comments</a></li>
+				<li><a href="news.asp">News</a></li>
                 <li><a href="system.asp" class="active">System</a></li>
                 <li><a href="suggestion.asp">Suggestion</a></li>
 				<li><a href="admin.asp?act=logout">Logout</a></li>

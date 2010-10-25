@@ -17,6 +17,7 @@ var action = new String(Request.QueryString("act")).toString();
                 <li><a href="clip.asp">Clips</a></li>
                 <li><a href="channel.asp"  class="active">Channel</a></li>
                 <li><a href="comment.asp">Comments</a></li>
+                <li><a href="news.asp">Comments</a></li>
                 <li><a href="system.asp">System</a></li>
                 <li><a href="suggestion.asp">Suggestion</a></li>
 				<li><a href="admin.asp?act=logout">Logout</a></li>
@@ -34,7 +35,7 @@ var action = new String(Request.QueryString("act")).toString();
 			<div id="center-column">
 				<div class="top-bar">
 					<%
-						if(action != "add" && action != "edit")
+                        if(action != "add" && action != "edit")
 						{
 							Response.Write("<div>Quick add channel</div>");
 							addChannel();							
