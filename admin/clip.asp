@@ -870,7 +870,7 @@ function doeditClipDetails()
 	var description = safe_query(Request.Form("description"));
 	var chanel_id = intval(Request.Form("channel_id"));
 	
-	conn.Execute ("update mc_clips set title ='"+safe_query(title)+"', description='"+description+"', chanel_id='"+chanel_id+"' where id="+id);
+	conn.Execute ("update mc_clips set title =N'"+safe_query(title)+"', description=N'"+description+"', chanel_id='"+chanel_id+"' where id="+id);
 	redirect(23, "clip.asp?act=edit&type=a&id="+id);
 }
 
