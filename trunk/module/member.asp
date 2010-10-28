@@ -256,27 +256,21 @@ function myProfile(type)
 		
 		//Check username
 		rs = Server.CreateObject("ADODB.Recordset");
-		rs.Open("SELECT count(uid) as total FROM mc_users where username='"+acc["username"]+"'", conn);		
+		rs.Open("SELECT username, email as total FROM mc_users where username='"+acc["username"]+"'", conn);		
 		if(! rs.EOF)
 		{
-			error_text = "Username is already exist";	
-			rs.Close();
-			rs = null;		
-		}
-		else 
-		{
-			rs.Close();
-			rs = null;
-			//Check email
-			rs = Server.CreateObject("ADODB.Recordset");
-			rs.Open("SELECT count(uid) as total FROM mc_users where email='"+acc["email"]+"'", conn);		
-			if(! rs.EOF)
-			{
-				error_text = "Email is already exist";			
+			rs.MoveFirst;
+			if(rs("username") == acc["username"])
+			{			
+				error_text = "Username is already exist";	
+			}
+			if(rs("email") == acc["email"])
+			{			
+				error_text = "Email is already exist";	
 			}
 			rs.Close();
-			rs = null;	
-		}
+			rs = null;		
+		}	
 		
 		//Handle
 		if(error_text == "") 

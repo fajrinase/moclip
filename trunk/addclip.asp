@@ -43,7 +43,7 @@ fs.MoveFile Application.Contents("upload_path") & "/" & image, Application.Conte
 set fs=nothing
 
 
-query = "INSERT INTO mc_clips (title,description,chanel_id, path, image, private, date_added, [submiter], last_modified) VALUES('" & c_title & "','" & c_desc & "','" & c_channel & "','" & name_clip & "','" & name_image & "','" & c_private & "','" & Date & "','" & c_uid & "','" & Date &"')"
+query = "INSERT INTO mc_clips (title,description,chanel_id, path, image, private, [submiter]) VALUES('" & c_title & "','" & c_desc & "','" & c_channel & "','" & name_clip & "','" & name_image & "','" & c_private & "','" & c_uid & "')"
 		
 'Response.Write(query)
 Conn.Execute query
