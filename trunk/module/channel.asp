@@ -383,10 +383,10 @@ function showJustAdded()
 		if(mysql)
 		rs.Open("SELECT c.id, c.title, c.image,c.description FROM mc_clips where approve=1 as c order by id DESC limit 9", conn);
 		else
-		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips where approve=1 as c order by id DESC", conn);
+		rs.Open("SELECT top 9 c.id, c.title, c.image,c.description FROM mc_clips as c where approve=1 order by id DESC", conn);
 		
 		var total = rs.PageCount;
-		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel");
+		var pageslink = build_page(total, perpage , current_page, "default.asp?act=channel&do=justadd");
 				
 		if(total == 0)
 		{
