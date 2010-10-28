@@ -66,7 +66,7 @@ function postSugguestion()
 		var title = safe_query(Request.Form("title"));
 		var content = safe_query(Request.Form("content"));
 		
-		conn.Execute("insert into mc_suggestion (user_id, content, title, date_added) values ("+user["id"]+", '"+content+"', '"+title+"', '"+now+"')");
+		conn.Execute("insert into mc_suggestion (user_id, content, title, date_added) values ("+user["id"]+", N'"+content+"', N'"+title+"', '"+now+"')");
 		
 		redirect(30, "default.asp?act=suggestion");	
 	

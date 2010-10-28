@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[mc_report](
 	[clip_id] [int] NOT NULL,
 	[user_id] [int] NOT NULL,
 	[comment] [nvarchar](500) NULL,
-	[report_date] [date] NOT NULL,
+	[report_date] [datetime] NOT NULL,
  CONSTRAINT [PK_mc_report] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC,
@@ -124,6 +124,21 @@ CREATE TABLE [dbo].[mc_report](
 	[user_id] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
+CREATE TABLE [dbo].[mc_news](
+	[nid] [int] IDENTITY(1,1) NOT NULL,
+	[title] [nvarchar](200) NULL,
+	[content] [ntext] NULL,
+	[date_added] [datetime] NULL,
+	[submiter] [int] NULL,
+	[image] [nvarchar](200) NULL,
+	[description] [nvarchar](500) NULL,
+ CONSTRAINT [PK_mc_news] PRIMARY KEY CLUSTERED 
+(
+	[nid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
 
 /****** Object:  Table [dbo].[mc_comments]    Script Date: 10/19/2010 09:22:21 ******/
 CREATE TABLE [dbo].[mc_comments](
