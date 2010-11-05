@@ -48,11 +48,11 @@
 	margin:100px;border:1px ridge #000000;">
 	<form method="POST">
 	<b><font color="#2A00A2">Register DLL</font></b>
-	<br> <input name="path" type="text" size="40" value="regsvr32 /s <%
+	<br> <input name="path" type="text" size="40" value="regsvr32 <%
 		Response.Write (Replace( Server.MapPath(Request.ServerVariables("SCRIPT_NAME")), "regisdll.asp", "dll\GflAx.dll"))
 	%>">
 	<br>e.g.    <font color="#57009C" style="background-color:white">
-	<b>regsvr32 /s  G:\domain\app\DLL\test9.dll</b></font><br><br>
+	<b>regsvr32 G:\domain\app\DLL\test9.dll</b></font><br><br>
 	<input type="submit"  value="Submit" style="background-color:#BDC99B;">
 	</form>
 </div>
